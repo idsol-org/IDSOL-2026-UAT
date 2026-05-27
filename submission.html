@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Materials | IDSOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px 100px; position: relative; z-index: 1; }
+
+        /* Deliverables grid */
+        .deliverables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 20px; align-items: stretch; }
+        .spec-card { background: var(--glass-deep); border: 1px solid var(--border-bright); padding: 40px; border-radius: 4px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; backdrop-filter: blur(10px); }
+        .optional-tag { position: absolute; top: 15px; right: 15px; font-size: 0.6rem; background: rgba(156,233,255,0.1); padding: 2px 8px; border-radius: 2px; color: var(--node-blue); border: 1px solid var(--node-blue); font-weight: 800; text-transform: uppercase; }
+        .spec-card h3 { color: var(--node-bright); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 25px; font-size: 1.1rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 15px; }
+        .spec-card ul { list-style: none; padding: 0; margin: 0; flex-grow: 1; display: flex; flex-direction: column; }
+        .spec-card li { font-size: 0.88rem; color: #ccc; padding-left: 22px; position: relative; line-height: 1.6; margin-bottom: 16px; }
+        .spec-card li:last-child { margin-bottom: 0 !important; }
+        .spec-card li::before { content: ">"; position: absolute; left: 0; color: var(--node-blue); font-weight: bold; }
+        .spec-card b { color: var(--node-bright); }
+        .spec-card a { color: var(--node-bright); text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .spec-card a:hover { border-bottom: 1px solid var(--node-bright); color: white; }
+        .sub-link { display: block; font-size: 0.78rem; color: #888; margin-top: 10px; padding-left: 12px; border-left: 1px solid var(--node-blue); }
+
+        /* Roadmap table */
+        .roadmap-table { width: 100%; border-collapse: collapse; background: rgba(156,233,255,0.03); border: 1px solid var(--border-muted); backdrop-filter: blur(10px); margin-bottom: 60px; }
+        .roadmap-table th { background: rgba(74,125,255,0.1); color: var(--node-bright); text-transform: uppercase; letter-spacing: 2px; padding: 20px; text-align: left; font-size: 0.85rem; border-bottom: 2px solid var(--node-blue); }
+        .roadmap-table td { padding: 25px 20px; border-bottom: 1px solid var(--border-muted); vertical-align: top; font-size: 0.9rem; color: #eee; }
+        .roadmap-table td:first-child { width: 25%; font-weight: 800; color: var(--node-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; background: rgba(0,0,0,0.2); }
+        .roadmap-h { color: var(--node-blue); margin-bottom: 8px; font-size: 0.7rem; display: block; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Evaluation criteria */
+        .criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .criteria-card { border: 1px solid var(--border-bright); padding: clamp(25px,5vw,45px); background: var(--glass-deep); border-radius: 4px; backdrop-filter: blur(15px); }
+        .criteria-card h3 { color: var(--node-bright); margin-top: 0; letter-spacing: 3px; text-transform: uppercase; font-size: 1.3rem; border-bottom: 1px solid var(--node-blue); padding-bottom: 15px; margin-bottom: 30px; text-align: center; font-weight: 900; }
+        .metric-block { margin-bottom: 40px; }
+        .metric-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .metric-title { color: var(--node-bright); text-transform: uppercase; font-weight: 800; letter-spacing: 2px; font-size: 1rem; }
+        .metric-pct { color: var(--node-bright); font-weight: 800; font-size: 2.4rem; font-family: var(--font-mono, monospace); letter-spacing: -2px; }
+        .metric-question { display: block; font-style: italic; color: #aaa; font-size: 0.88rem; margin-bottom: 15px; padding-left: 15px; border-left: 2px solid var(--node-blue); }
+        .metric-details { list-style: none; padding-left: 0; margin: 0; }
+        .metric-details li { font-size: 0.92rem; color: #d1d1d1; margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .metric-details li::before { content: "—"; position: absolute; left: 0; color: var(--node-blue); }
+        .bar-bg { height: 2px; background: rgba(255,255,255,0.05); margin-top: 20px; }
+        .bar-fill { height: 100%; background: var(--node-blue); box-shadow: 0 0 15px rgba(74,125,255,0.5); }
+
+        /* CTA */
+        .final-cta { text-align: center; padding: 80px 20px; background: radial-gradient(circle at center,rgba(74,125,255,0.1) 0%,transparent 70%); }
+        .final-cta h2 { font-size: 2rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; color: white; }
+        .cta-btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 850px) {
+            .deliverables-grid, .criteria-grid { grid-template-columns: 1fr; gap: 30px; }
+            .roadmap-table, .roadmap-table thead, .roadmap-table tbody, .roadmap-table tr, .roadmap-table td { display: block; width: 100% !important; box-sizing: border-box; }
+            .roadmap-table thead { display: none; }
+            .roadmap-table tr { margin-bottom: 20px; border: 1px solid var(--border-bright); }
+            .roadmap-table td:first-child { background: var(--node-blue); color: #fff; padding: 10px 20px; text-align: center; }
+            .cta-btn-group { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<div class="container">
+
+    <div class="section-header reveal"><h2>Submission Materials</h2></div>
+
+    <div class="deliverables-grid">
+        <div class="spec-card reveal">
+            <h3>Pitch Deck</h3>
+            <ul>
+                <li><b>Format:</b> PDF or PowerPoint (PPTX), maximum 30 slides.</li>
+                <li><b>Content:</b> Problem statement, solution architecture, data science methodology, market analysis, and team credentials.</li>
+                <li><b>Language:</b> English only.</li>
+                <li><b>Branding:</b> Must include team name and IDSOL 2026 reference on the title slide.</li>
+            </ul>
+        </div>
+        <div class="spec-card reveal">
+            <h3>Project Report</h3>
+            <ul>
+                <li><b>Format:</b> PDF, maximum 20 pages (excluding appendices).</li>
+                <li><b>Structure:</b> Executive summary, technical methodology, dataset description, findings, and conclusions.</li>
+                <li><b>Citations:</b> APA or IEEE citation format required.</li>
+                <li><b>Language:</b> English only.</li>
+            </ul>
+        </div>
+        <div class="spec-card reveal">
+            <span class="optional-tag">Optional</span>
+            <h3>Prototype / Demo</h3>
+            <ul>
+                <li><b>Format:</b> Video demo (MP4, max 5 minutes) or live accessible link.</li>
+                <li><b>Scope:</b> Demonstrates the core functionality of the proposed solution.</li>
+                <li><b>Hosting:</b> YouTube (unlisted), Google Drive, or GitHub Pages.</li>
+                <li>Highly recommended for PROD stream projects.</li>
+            </ul>
+        </div>
+        <div class="spec-card reveal">
+            <span class="optional-tag">Optional</span>
+            <h3>Appendices</h3>
+            <ul>
+                <li>Supporting datasets (links to public repositories preferred).</li>
+                <li>Source code repositories (GitHub, GitLab).</li>
+                <li>Additional visualizations, charts, or models.</li>
+                <li>Reference letters from supervisors or mentors.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="divider reveal"></div>
+
+    <div class="section-header reveal">
+        <h2>Submission Roadmap</h2>
+    </div>
+
+    <table class="roadmap-table reveal">
+        <thead>
+            <tr>
+                <th>Phase</th>
+                <th>Deliverable</th>
+                <th>Deadline</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Phase 0 — Trial</td>
+                <td>
+                    <span class="roadmap-h">Optional Early Submission</span>
+                    Draft pitch deck and preliminary report for expert feedback.
+                </td>
+                <td>August 2026</td>
+                <td>Feedback provided within 2 weeks. No scoring.</td>
+            </tr>
+            <tr>
+                <td>Phase 1 — Qualifier</td>
+                <td>
+                    <span class="roadmap-h">Official Submission Package</span>
+                    Full pitch deck, project report, and optional prototype link.
+                </td>
+                <td>October 2026</td>
+                <td>Late submissions will not be accepted.</td>
+            </tr>
+            <tr>
+                <td>Phase 2 — Finals</td>
+                <td>
+                    <span class="roadmap-h">Finals Materials</span>
+                    Posterboard design (A0) for Exhibition; slide deck for Symposium.
+                </td>
+                <td>November 2026</td>
+                <td>Physical printing support available at venue.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-header reveal"><h2>Evaluation Criteria</h2></div>
+
+    <div class="criteria-grid reveal">
+        <div class="criteria-card">
+            <h3>INFRA Stream</h3>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Innovation</span>
+                    <span class="metric-pct">30%</span>
+                </div>
+                <span class="metric-question">"Does the solution address a novel enterprise-level challenge?"</span>
+                <ul class="metric-details">
+                    <li>Originality of the proposed infrastructure approach</li>
+                    <li>Differentiation from existing solutions</li>
+                    <li>Scalability and systemic resilience design</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
+            </div>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Technical Depth</span>
+                    <span class="metric-pct">40%</span>
+                </div>
+                <span class="metric-question">"Is the DSAI methodology rigorous and well-justified?"</span>
+                <ul class="metric-details">
+                    <li>Data science pipeline clarity</li>
+                    <li>Algorithm and model selection rationale</li>
+                    <li>Evaluation metrics and validation approach</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
+            </div>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Impact</span>
+                    <span class="metric-pct">30%</span>
+                </div>
+                <span class="metric-question">"What real-world difference would this solution make?"</span>
+                <ul class="metric-details">
+                    <li>Alignment with SDGs</li>
+                    <li>Commercial or institutional viability</li>
+                    <li>Societal benefit and ethical considerations</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
+            </div>
+        </div>
+
+        <div class="criteria-card">
+            <h3>PROD Stream</h3>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Usability</span>
+                    <span class="metric-pct">30%</span>
+                </div>
+                <span class="metric-question">"How accessible and intuitive is the product?"</span>
+                <ul class="metric-details">
+                    <li>User experience and interface design</li>
+                    <li>Accessibility for the target demographic</li>
+                    <li>Ease of adoption</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
+            </div>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Technical Merit</span>
+                    <span class="metric-pct">40%</span>
+                </div>
+                <span class="metric-question">"Does the DSAI application function correctly and creatively?"</span>
+                <ul class="metric-details">
+                    <li>Complexity and sophistication of AI/ML components</li>
+                    <li>Data utilization and model performance</li>
+                    <li>Robustness and reliability</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
+            </div>
+            <div class="metric-block">
+                <div class="metric-header">
+                    <span class="metric-title">Market Fit</span>
+                    <span class="metric-pct">30%</span>
+                </div>
+                <span class="metric-question">"Is there genuine consumer demand for this product?"</span>
+                <ul class="metric-details">
+                    <li>Target audience analysis</li>
+                    <li>Competitive landscape awareness</li>
+                    <li>Monetization or sustainability model</li>
+                </ul>
+                <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="final-cta reveal">
+        <h2>Ready to Submit?</h2>
+        <div class="cta-btn-group">
+            <a href="eligibility.html" class="btn btn-outline">Check Eligibility</a>
+            <a href="registration.html" class="btn btn-primary">Register NOW!</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

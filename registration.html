@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | IDSOL 2026</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; position: relative; z-index: 1; isolation: isolate; box-sizing: border-box; }
+
+        /* Register interest card */
+        .roi-container { margin: 40px auto; max-width: 800px; }
+        .roi-card { display: flex; flex-direction: column; align-items: center; padding: 45px 25px; background: radial-gradient(circle at 50% 50%,#1a2a4a 0%,#131c32 100%); border: 1px solid var(--border-bright); border-radius: 8px; text-align: center; backdrop-filter: blur(20px); text-decoration: none; transition: all 0.4s ease; }
+        .roi-card:hover { transform: translateY(-6px); border-color: var(--node-bright); box-shadow: 0 0 25px rgba(156,233,255,0.18); }
+        .roi-icon { color: var(--node-bright); margin-bottom: 18px; filter: drop-shadow(0 0 8px rgba(156,233,255,0.5)); }
+        .roi-card h3 { color: var(--node-bright); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 0 0 12px; font-weight: 800; }
+        .roi-card p { color: #d1d1d1; font-size: 0.95rem; margin: 0 0 25px; max-width: 480px; }
+        .btn-roi { background: var(--node-bright); color: #0f172a; padding: 14px 45px; border-radius: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156,233,255,0.4); }
+        .roi-card:hover .btn-roi { background: #fff; transform: scale(1.04); box-shadow: 0 0 18px rgba(255,255,255,0.5); }
+        .status-badge { margin-top: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--node-blue); font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .pulse-square { width: 9px; height: 9px; background: var(--node-bright); animation: pulse-sq 2.2s infinite; }
+        @keyframes pulse-sq { 0%{transform:scale(0.9);box-shadow:0 0 0 0 rgba(156,233,255,0.7)} 70%{transform:scale(1.15);box-shadow:0 0 0 10px rgba(156,233,255,0)} 100%{transform:scale(0.9);box-shadow:0 0 0 0 rgba(156,233,255,0)} }
+
+        /* Info boxes */
+        .intro-text { text-align: center; color: #bbb; max-width: 900px; margin: 0 auto 35px; font-size: 0.95rem; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .info-box h3 { color: var(--node-bright); text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--node-blue); padding-bottom: 8px; font-size: 1.1rem; }
+        .info-box p { font-size: 0.95rem; color: #d1d1d1; }
+        .category-list { list-style: none; padding: 0; }
+        .category-list li { margin-bottom: 8px; font-weight: bold; color: var(--node-bright); font-size: 0.9rem; }
+        .category-list li::before { content: "■ "; color: var(--node-blue); margin-right: 8px; }
+
+        /* Collapsibles */
+        .collapsible-container { margin-top: 20px; }
+        .collapsible-item { background: rgba(156,233,255,0.03); border: 1px solid var(--border-muted); margin-bottom: 10px; backdrop-filter: blur(10px); }
+        .collapsible-trigger { width: 100%; padding: 15px 18px; background: rgba(74,125,255,0.1); border: none; color: var(--node-bright); text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; transition: background 0.3s; }
+        .collapsible-trigger:hover { background: rgba(74,125,255,0.2); }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.3s; padding: 0 18px; font-size: 0.88rem; color: #d1d1d1; line-height: 1.8; }
+        .collapsible-item.active .collapsible-content { max-height: 1000px; padding: 16px 18px; }
+        .collapsible-item.active .collapsible-trigger { background: rgba(74,125,255,0.2); }
+
+        /* Note */
+        .note-reveal { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--footer-grey); font-size: 0.95rem; line-height: 1.7; }
+
+        @media (max-width: 850px) { .info-grid { grid-template-columns: 1fr; gap: 20px; } }
+        @media (max-width: 600px) {
+            .section-header h1, .section-header h2 { font-size: 1.5rem; letter-spacing: 4px; }
+            .container { padding: 20px 15px; }
+            .roi-card { padding: 35px 20px; }
+            .roi-card h3 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<div class="container">
+    <div class="section-header reveal">
+        <h1>Registration</h1>
+        <p>IDSOL 2026 Participation</p>
+    </div>
+
+    <div class="intro-text reveal">
+        <p>Spots are limited. Teams that register early gain priority access to the official handbook, competition portal, and preparation resources before the general public.</p>
+    </div>
+
+    <div class="roi-container reveal">
+        <a href="https://forms.gle/bqvQ7bkBXrY82DEt6" target="_blank" class="roi-card">
+            <div class="roi-icon"><i data-lucide="bell-ring" style="width:44px;height:44px;"></i></div>
+            <h3>Secure Your Place</h3>
+            <p>Don't wait for the announcement — be the first in line when registration opens.</p>
+            <div class="btn-roi">Register Your Interest Now</div>
+            <div class="status-badge">
+                <span class="pulse-square"></span> Registration Interest Open
+            </div>
+        </a>
+    </div>
+
+    <div class="divider reveal"></div>
+
+    <div class="section-header reveal"><h2>Registration Fee</h2></div>
+
+    <div class="info-grid reveal">
+        <div class="info-box">
+            <h3>How are fees levied?</h3>
+            <p>Registration fees are <b>only collected from teams invited to the IDSOL finals</b>. The payment details will be provided along with the invitation letter and/or visa application support letter. Fee depends on the country of representation:</p>
+            <ul class="category-list">
+                <li>Category A: High income.</li>
+                <li>Category B: Upper middle income.</li>
+                <li>Category C: Low and lower middle income.</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h3>Why are fees levied?</h3>
+            <p>It takes monumental resources and epic effort to organize the International Data Science Olympiad (IDSOL) worldwide annually. The fees levied by the organizing committee contribute to the costs of these resources and effort, including food, beverages, human resources, and posterboard printing.</p>
+            <p><em>No profits are extracted from these fees.</em></p>
+            <p><a href="#" style="color:var(--node-bright);">Terms and Conditions of Participation</a></p>
+        </div>
+    </div>
+
+    <div class="collapsible-container reveal">
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">
+                Country Category A
+                <i data-lucide="chevron-down" style="width:18px;height:18px;transition:transform 0.3s;"></i>
+            </button>
+            <div class="collapsible-content">
+                American Samoa, Andorra, Antigua &amp; Barbuda, Aruba, Australia, Austria, Bahamas, Bahrain, Barbados, Belgium, Bermuda, British Virgin Is., Brunei, Bulgaria, Canada, Cayman Is., Channel Is., Chile, Croatia, Curaçao, Cyprus, Czech Rep., Denmark, Estonia, Faroe Is., Finland, France, French Polynesia, Germany, Gibraltar, Greece, Greenland, Guam, Guyana, Hong Kong, Hungary, Iceland, Ireland, Isle of Man, Israel, Italy, Japan, Korea Rep. of, Kuwait, Latvia, Liechtenstein, Lithuania, Luxembourg, Macao, Malta, Monaco, Nauru, Netherlands, New Caledonia, New Zealand, Northern Mariana Is., Norway, Oman, Palau, Panama, Poland, Portugal, Puerto Rico, Qatar, Romania, Russian Fed., San Marino, Saudi Arabia, Seychelles, Singapore, Sint Maarten, Slovak Rep., Slovenia, Spain, St. Kitts and Nevis, St. Martin, Sweden, Switzerland, Taiwan, Trinidad and Tobago, Turks and Caicos Islands, United Arab Emirates, United Kingdom, United States, Uruguay, Virgin Islands (US).
+            </div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">
+                Country Category B
+                <i data-lucide="chevron-down" style="width:18px;height:18px;transition:transform 0.3s;"></i>
+            </button>
+            <div class="collapsible-content">
+                Albania, Algeria, Argentina, Armenia, Azerbaijan, Belarus, Belize, Bosnia and Herzegovina, Botswana, Brazil, China, Colombia, Costa Rica, Cuba, Dominica, Dominican Republic, Ecuador, El Salvador, Equatorial Guinea, Fiji, Gabon, Georgia, Grenada, Guatemala, Indonesia, Iran, Iraq, Jamaica, Kazakhstan, Kosovo, Libya, Malaysia, Maldives, Marshall Is., Mauritius, Mexico, Moldova, Mongolia, Montenegro, Namibia, North Macedonia, Paraguay, Peru, Serbia, South Africa, St. Lucia, St. Vincent and the Grenadines, Suriname, Thailand, Tonga, Türkiye, Turkmenistan, Tuvalu, Ukraine.
+            </div>
+        </div>
+        <div class="collapsible-item">
+            <button class="collapsible-trigger">
+                Country Category C
+                <i data-lucide="chevron-down" style="width:18px;height:18px;transition:transform 0.3s;"></i>
+            </button>
+            <div class="collapsible-content">
+                Afghanistan, Angola, Bangladesh, Benin, Bhutan, Bolivia, Burkina Faso, Burundi, Cabo Verde, Cambodia, Cameroon, Central African Rep., Chad, Comoros, Congo Dem. Rep., Congo Rep., Côte d'Ivoire, Djibouti, Egypt, Eritrea, Eswatini, Ethiopia, Gambia, Ghana, Guinea, Guinea-Bissau, Haiti, Honduras, India, Jordan, Kenya, Kiribati, Korea Dem. People's Rep., Kyrgyz Rep., Lao PDR, Lebanon, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Micronesia Fed. Sts., Morocco, Mozambique, Myanmar, Nepal, Nicaragua, Niger, Nigeria, Pakistan, Papua New Guinea, Philippines, Rwanda, Samoa, São Tomé and Príncipe, Senegal, Sierra Leone, Solomon Is., Somalia, South Sudan, Sri Lanka, Sudan, Syria, Tajikistan, Tanzania, Timor-Leste, Togo, Tunisia, Uganda, Uzbekistan, Vanuatu, Vietnam, West Bank and Gaza, Yemen, Zambia, Zimbabwe, and all other countries not listed in Category A or B.
+            </div>
+        </div>
+    </div>
+
+    <div class="note-reveal reveal">
+        KBI reserves the right to adjust fee categories. All fees must be settled within the deadline provided in the invitation letter. Non-payment may result in disqualification from the final round.
+    </div>
+
+</div>
+
+<script>
+    // Collapsible accordion
+    document.querySelectorAll('.collapsible-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.collapsible-item');
+            const isOpen = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.collapsible-item').forEach(i => i.classList.remove('active'));
+            if (!isOpen) item.classList.add('active');
+            // Rotate chevrons
+            document.querySelectorAll('.collapsible-trigger i').forEach(ic => ic.style.transform = 'rotate(0deg)');
+            if (!isOpen) btn.querySelector('i').style.transform = 'rotate(180deg)';
+        });
+    });
+</script>
+<script src="js/shared.js"></script>
+</body>
+</html>
