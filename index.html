@@ -19,6 +19,11 @@
             --border-bright: rgba(165, 215, 232, 0.3);
         }
 
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-padding-top: 64px;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -26,16 +31,62 @@
             min-height: 100vh;
         }
 
+        .home-snap {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .home-snap .snap-panel {
+            min-height: calc(100vh - 64px);
+            min-height: calc(100dvh - 64px);
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 0 20px;
+        }
+
+        .home-snap .section-header { margin: 1.5rem 0 1rem; }
+
         /* Hero */
         #hero-section {
+            position: relative;
             width: 100%;
             max-width: 1200px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            padding: 160px 20px 180px;
+            padding: 1rem 20px 2.5rem;
             text-align: center;
+            box-sizing: border-box;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .scroll-chevron {
+            display: block;
+            font-size: 1.75rem;
+            line-height: 1;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.85; }
+            50% { transform: translateY(8px); opacity: 1; }
         }
 
         .reveal-hero { opacity: 0; clip-path: inset(100% 0 0 0); transform: translateY(20px); animation: curtainReveal 1.4s cubic-bezier(0.19,1,0.22,1) forwards; }
@@ -44,18 +95,18 @@
         @keyframes curtainReveal { 0%{opacity:0;clip-path:inset(100% 0 0 0);transform:translateY(20px)} 100%{opacity:1;clip-path:inset(0% 0 0 0);transform:translateY(0)} }
         @keyframes fadeIn { to{opacity:1;transform:translateY(0)} }
 
-        .main-logo { width: 420px; max-width: 85%; height: auto; margin-bottom: 20px; filter: drop-shadow(0 0 25px rgba(165,215,232,0.3)); }
-        .brand-title { font-size: 24px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 60px; text-shadow: 0 0 15px rgba(165,215,232,0.4); color: #E2E8F0; }
-        .countdown-subheader { font-size: 16px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase; color: var(--node-bright); margin-bottom: 25px; text-shadow: 0 0 10px rgba(165,215,232,0.6); border-bottom: 2px solid var(--node-bright); padding-bottom: 10px; display: inline-block; }
-        .countdown-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
-        .time-box { display: flex; flex-direction: column; align-items: center; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid rgba(165,215,232,0.1); border-radius: 20px; width: 110px; padding: 20px 0; }
-        .time-value { font-size: 48px; font-weight: 900; line-height: 1; font-family: var(--font-mono); color: #F8FAFC; }
+        .main-logo { width: min(400px, 70vw); max-width: 85%; height: auto; margin-bottom: 8px; filter: drop-shadow(0 0 25px rgba(165,215,232,0.3)); }
+        .brand-title { font-size: 24px; font-weight: 800; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 15px rgba(165,215,232,0.4); color: #E2E8F0; }
+        .countdown-subheader { font-size: 16px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase; color: var(--node-bright); margin-bottom: 16px; text-shadow: 0 0 10px rgba(165,215,232,0.6); border-bottom: 2px solid var(--node-bright); padding-bottom: 10px; display: inline-block; }
+        .countdown-container { display: flex; gap: 16px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; }
+        .time-box { display: flex; flex-direction: column; align-items: center; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid rgba(165,215,232,0.1); border-radius: 16px; width: 96px; padding: 14px 0; }
+        .time-value { font-size: 40px; font-weight: 900; line-height: 1; font-family: var(--font-mono); color: #F8FAFC; }
         .time-label { font-size: 10px; font-weight: 800; color: var(--node-bright); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
         .cursor-blink { display: inline-block; background: var(--node-bright); width: 3px; height: 20px; margin-left: 5px; animation: blink 1s infinite; vertical-align: middle; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
         /* Stats */
-        .stats-wrapper { width: 100%; max-width: 1000px; margin: 20px auto; text-align: center; padding: 0 20px; }
+        .stats-wrapper { width: 100%; max-width: 1000px; margin: 0 auto; text-align: center; padding: 0; }
         .stats-section { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
         .stats-section.revealed { opacity: 1; transform: translateY(0); }
         .stat-card { background: var(--glass-bg); border: 1px solid rgba(165,215,232,0.05); padding: 25px; border-radius: 20px; min-width: 220px; transition: all 0.3s ease; }
@@ -64,49 +115,177 @@
         .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #E2E8F0; opacity: 0.8; }
 
         /* Journey roadmap */
-        .roadmap-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 40px 20px 150px; width: 100%; }
-        .roadmap-container::before { content:''; position:absolute; top:0; left:50%; width:2px; height:100%; background:linear-gradient(to bottom,transparent,#576A76 10%,#A5D7E8 50%,#60A5FA 90%,transparent); transform:translateX(-50%); z-index:0; }
-        .step { position:relative; margin-bottom:100px; width:100%; display:flex; justify-content:center; align-items:center; opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; z-index:1; }
-        .step.revealed { opacity:1; transform:translateY(0); }
-        .step:nth-child(even) { flex-direction:row-reverse; }
-        .step-card { width:90%; max-width:620px; padding:30px 40px; background:rgba(15,23,42,0.85); backdrop-filter:blur(20px); border:1px solid rgba(165,215,232,0.15); border-radius:20px; box-shadow:0 15px 45px rgba(0,0,0,0.5); }
-        .step-card h2 { color:var(--node-bright); margin-top:0; }
-        .step-card p { color:#CBD5E1; margin:0; }
+        #section-journey {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding-bottom: 8px;
+        }
+        #section-journey .section-header {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        #section-journey.revealed .section-header {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+        #section-journey .roadmap-container { flex: 0 1 auto; }
+        .roadmap-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 12px;
+            box-sizing: border-box;
+        }
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(87,106,118,0.9) 15%, rgba(165,215,232,0.55) 50%, rgba(87,106,118,0.9) 85%, transparent);
+            transform: translateY(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .step {
+            position: relative;
+            flex: 1 1 220px;
+            min-width: 180px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(36px) scale(0.97);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #section-journey.revealed .step:nth-child(1) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.12s; }
+        #section-journey.revealed .step:nth-child(3) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.42s; }
+        #section-journey.revealed .step:nth-child(5) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.72s; }
+        #section-journey.revealed .step:nth-child(7) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 1.02s; }
+        .step-card {
+            width: 100%;
+            padding: 28px 24px;
+            min-height: 200px;
+            height: 100%;
+            box-sizing: border-box;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(165, 215, 232, 0.35);
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(165, 215, 232, 0.06) inset,
+                0 16px 40px rgba(0, 0, 0, 0.45);
+        }
+        .step-card h2 { color: var(--node-bright); margin-top: 0; font-size: 1.25rem; margin-bottom: 8px; }
+        .step-card p { color: #CBD5E1; margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .roadmap-connector {
+            position: relative;
+            flex: 0 0 auto;
+            align-self: center;
+            width: 28px;
+            text-align: center;
+            color: var(--node-bright);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .roadmap-connector::before { content: '›'; }
+        #section-journey.revealed .roadmap-connector:nth-child(2) { opacity: 1; transform: scale(1); transition-delay: 0.28s; }
+        #section-journey.revealed .roadmap-connector:nth-child(4) { opacity: 1; transform: scale(1); transition-delay: 0.58s; }
+        #section-journey.revealed .roadmap-connector:nth-child(6) { opacity: 1; transform: scale(1); transition-delay: 0.88s; }
 
         /* Testimonials */
-        .testimonial-slider { width:100%; max-width:1100px; margin:40px auto 100px; position:relative; padding:20px 80px; }
+        #section-testimonials .testimonial-slider { flex: 0 1 auto; width: 100%; }
+        .testimonial-slider { width:100%; max-width:1100px; margin:0 auto; position:relative; padding:12px 80px; }
         .testimonial-container { width:100%; overflow:hidden; border-radius:30px; }
         .testimonial-track { display:flex; transition:transform 0.6s cubic-bezier(0.23,1,0.32,1); }
         .testimonial-track.no-anim { transition:none !important; }
-        .t-card { min-width:100%; padding:60px 50px; background:var(--glass-bg); border:1px solid rgba(165,215,232,0.05); backdrop-filter:blur(12px); display:flex; flex-direction:column; align-items:center; text-align:center; border-radius:30px; }
-        .t-img { width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid var(--node-bright); margin-bottom:15px; }
+        .t-card { min-width:100%; padding:32px 28px; background:var(--glass-bg); border:1px solid rgba(165,215,232,0.05); backdrop-filter:blur(12px); display:flex; flex-direction:column; align-items:center; text-align:center; border-radius:30px; }
+        .t-img { width:90px; height:90px; border-radius:50%; object-fit:cover; border:3px solid var(--node-bright); margin-bottom:12px; }
         .t-info h3 { margin:0; font-size:1.4rem; color:#fff; }
         .t-info span { color:var(--node-bright); font-size:0.9rem; font-weight:700; }
-        .t-body { font-size:1.1rem; line-height:1.7; color:#CBD5E1; font-style:italic; max-width:750px; margin-top:20px; }
+        .t-body { font-size:1rem; line-height:1.55; color:#CBD5E1; font-style:italic; max-width:750px; margin-top:12px; }
+        .t-body p { margin:0; }
         .arrow { position:absolute; top:50%; transform:translateY(-50%); width:55px; height:55px; background:rgba(165,215,232,0.05); border:1px solid rgba(165,215,232,0.1); border-radius:50%; color:var(--node-bright); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10; transition:background 0.3s; font-size:1.2rem; }
         .arrow:hover { background:rgba(165,215,232,0.15); }
         .arrow.prev { left:10px; }
         .arrow.next { right:10px; }
         .dot { width:10px; height:10px; background:rgba(165,215,232,0.2); border-radius:50%; cursor:pointer; transition:0.3s; }
         .dot.active { background:var(--node-bright); transform:scale(1.4); }
-        .carousel-controls { display:flex; justify-content:center; gap:15px; margin-top:30px; }
+        .carousel-controls { display:flex; justify-content:center; gap:15px; margin-top:16px; }
 
-        /* CTA */
-        .cta-section { width:100%; padding:80px 20px 120px; text-align:center; position:relative; overflow:hidden; }
+        /* CTA + footer final panel */
+        #section-final {
+            max-width: 100%;
+            padding: 0;
+            justify-content: space-between;
+        }
+        #section-final .cta-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding: 40px 20px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        #section-final .site-footer {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .cta-section { width:100%; text-align:center; position:relative; overflow:hidden; }
         .cta-content { position:relative; z-index:4; }
         .cta-title { font-size:clamp(1.5rem,5vw,2.2rem); letter-spacing:6px; text-transform:uppercase; color:var(--node-bright); margin-bottom:15px; font-weight:900; }
-        .cta-sub { color:#CBD5E1; margin-bottom:40px; font-size:1rem; }
+        .cta-sub { color:#CBD5E1; margin-bottom:24px; font-size:1rem; }
         .cta-btn { display:inline-flex; padding:18px 50px; border-radius:50px; text-decoration:none; text-transform:uppercase; letter-spacing:4px; font-weight:800; font-size:1rem; transition:all 0.3s ease; align-items:center; gap:12px; background:var(--node-bright); color:#0f172a; border:1px solid var(--node-bright); }
         .cta-btn:hover { transform:translateY(-3px); background:white; box-shadow:0 15px 40px rgba(165,215,232,0.4); }
         .cta-anim-bg { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:1; }
-        .brand-zone { position:relative; width:min(80vw,500px); height:min(80vw,450px); display:flex; justify-content:center; align-items:center; opacity:0.35; }
+        .brand-zone { position:relative; width:min(70vw,380px); height:min(60vw,320px); display:flex; justify-content:center; align-items:center; opacity:0.35; }
         #traceCanvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; transition:opacity 1s ease; }
         #logo-reveal-img { width:min(80vw,500px); z-index:1; opacity:0; transform:scale(0.85); filter:drop-shadow(0 0 35px rgba(165,215,232,0.4)); transition:all 1.2s cubic-bezier(0.16,1,0.3,1); }
         .brand-zone.revealed-inner #logo-reveal-img { opacity:1; transform:scale(1); }
         .brand-zone.revealed-inner #traceCanvas { opacity:0; }
 
         /* Sponsor logos */
-        .logo-wall { margin-top:30px; display:flex; flex-wrap:wrap; justify-content:center; max-width:1250px; margin-left:auto; margin-right:auto; padding:0 20px; }
+        #logo-wall-container {
+            width: 100%;
+            min-height: 580px;
+            position: relative;
+            flex: 0 0 auto;
+        }
+        .logo-wall {
+            margin-top: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1250px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+            min-height: inherit;
+            align-content: flex-start;
+        }
         @keyframes logoFadeIn { 0% { opacity:0; transform:scale(0.96); } 100% { opacity:1; transform:scale(1); } }
         @keyframes logoFadeOut { 0% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(0.96); } }
         .logo-container { padding:0; margin:8px; display:flex; justify-content:center; align-items:center; max-width:180px; height:100px; background:#fff; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1); animation-duration:0.5s; animation-fill-mode:both; animation-timing-function:ease-in-out; }
@@ -114,34 +293,58 @@
         .show-back .logo-container { animation-name: logoFadeOut; }
         .logo-container img { object-fit:contain; width:80%; height:80%; }
         @media (min-width:1200px) { .logo-container { width:calc(20% - 16px); } }
-        @media (min-width:600px) and (max-width:1199px) { .logo-container { width:calc(33% - 16px); } }
-        @media (max-width:599px) { .logo-container { width:calc(50% - 16px); height:80px; } }
+        @media (min-width:600px) and (max-width:1199px) {
+            .logo-container { width:calc(33% - 16px); }
+            #logo-wall-container { min-height: 812px; }
+        }
+        @media (max-width:599px) {
+            .logo-container { width:calc(50% - 16px); height:80px; }
+            #logo-wall-container { min-height: 400px; overflow: hidden; }
+        }
 
         /* Mobile */
         @media (max-width:768px) {
-            #hero-section { padding:100px 15px 100px; }
-            .brand-title { font-size:16px; letter-spacing:3px; }
+            #hero-section { padding: 0.5rem 15px 2.5rem; }
+            .main-logo { width: min(280px, 75vw); margin-bottom: 6px; }
+            .brand-title { font-size:16px; letter-spacing:3px; margin-bottom: 14px; }
             .time-box { width:78px; padding:14px 0; }
             .time-value { font-size:30px; }
-            .roadmap-container::before { left:20px; }
-            .step { justify-content:flex-start; margin-bottom:50px; }
-            .step:nth-child(even) { flex-direction:row; }
-            .step-card { width:calc(100% - 48px); margin-left:38px; padding:20px; }
-            .testimonial-slider { padding:20px 10px; margin-bottom:60px; }
-            .t-card { padding:40px 20px; }
+            .roadmap-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 16px 12px;
+                gap: 8px;
+            }
+            .roadmap-container::before {
+                left: 50%;
+                right: auto;
+                top: 8%;
+                bottom: 8%;
+                width: 2px;
+                height: auto;
+                transform: translateX(-50%);
+            }
+            .step { flex: 0 0 auto; width: 100%; max-width: 520px; min-width: 0; }
+            .step-card { min-height: 0; padding: 20px 18px; }
+            .roadmap-connector { width: auto; padding: 4px 0; }
+            .roadmap-connector::before { content: '⌄'; }
+            .testimonial-slider { padding:12px 10px; }
+            .t-card { padding:28px 18px; }
             .t-body { font-size:0.95rem; }
             .arrow { width:38px; height:38px; }
             .stat-card { min-width:140px; padding:15px; }
             .stat-number { font-size:2rem; }
-            .brand-zone { width:min(88vw,420px); height:min(88vw,380px); }
+            .brand-zone { width:min(75vw,320px); height:min(55vw,260px); }
         }
     </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 
+<main class="home-snap">
+
 <!-- Hero -->
-<div id="hero-section">
+<section id="hero-section" class="snap-panel">
     <div class="reveal-hero">
         <img src="https://cdn.kb.institute/eto-2026/IDSOL/Logo/Square_Dark_Background_2026_500.png" class="main-logo" alt="IDSOL Logo">
         <div class="brand-title">International Data Science Olympiad 2026</div>
@@ -156,71 +359,102 @@
             <div class="time-box"><span class="time-value" id="minutes">00</span><span class="time-label">Mins</span></div>
             <div class="time-box"><span class="time-value" id="seconds">00</span><span class="time-label">Secs</span></div>
         </div>
-        <div style="font-family:'Roboto Mono',monospace;font-size:1rem;color:var(--node-bright);margin-top:20px;padding:0 10px;">
+        <div style="font-family:'Roboto Mono',monospace;font-size:1rem;color:var(--node-bright);margin-top:12px;padding:0 10px;">
             &gt; <span id="typed-text"></span><span class="cursor-blink"></span>
         </div>
     </div>
-</div>
+    <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron">⌄</span>
+    </div>
+</section>
 
 <!-- Stats -->
-<div class="stats-wrapper">
+<section class="stats-wrapper snap-panel">
     <div class="section-header"><h2>Competition Impact</h2></div>
     <div class="stats-section reveal" id="stats-container">
         <div class="stat-card"><span class="stat-number" data-target="120">0</span><span class="stat-label">Participating Countries</span></div>
         <div class="stat-card"><span class="stat-number" data-target="1000">0</span><span class="stat-label">Global Participants</span></div>
         <div class="stat-card"><span class="stat-number" data-target="200">0</span><span class="stat-label">Academic Institutions</span></div>
     </div>
-</div>
+</section>
 
 <!-- Journey -->
-<div class="section-header reveal"><h1>The Journey</h1></div>
+<section class="snap-panel reveal" id="section-journey">
+<div class="section-header"><h1>The Journey</h1></div>
 <div class="roadmap-container">
-    <div class="step reveal"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IDSOL ecosystem.</p></div></div>
-    <div class="step reveal"><div class="step-card"><h2>Training</h2><p>Master advanced methodologies in KBI's Skillsprint to elevate your technical proficiency.</p></div></div>
-    <div class="step reveal"><div class="step-card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
-    <div class="step reveal"><div class="step-card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
+    <div class="step"><div class="step-card"><h2>Registration</h2><p>Secure your spot and verify credentials to gain entry to the IDSOL ecosystem.</p></div></div>
+    <span class="roadmap-connector" aria-hidden="true"></span>
+    <div class="step"><div class="step-card"><h2>Training</h2><p>Master advanced methodologies in KBI's Skillsprint to elevate your technical proficiency.</p></div></div>
+    <span class="roadmap-connector" aria-hidden="true"></span>
+    <div class="step"><div class="step-card"><h2>Creation</h2><p>Architect an original project that translates complex insights into real-world solutions.</p></div></div>
+    <span class="roadmap-connector" aria-hidden="true"></span>
+    <div class="step"><div class="step-card"><h2>Submission</h2><p>Finalize and upload your project for evaluation by our international board of experts.</p></div></div>
 </div>
+</section>
 
 <!-- Testimonials -->
+<section class="snap-panel" id="section-testimonials">
 <div class="section-header reveal"><h1>Alumni &amp; Partner Impact</h1></div>
 <div class="testimonial-slider">
-    <button class="arrow prev" onclick="moveSlide(-1)" aria-label="Previous">❮</button>
-    <button class="arrow next" onclick="moveSlide(1)" aria-label="Next">❯</button>
+    <div class="arrow prev" role="button" tabindex="0" aria-label="Previous" onclick="moveSlide(-1)">❮</div>
+    <div class="arrow next" role="button" tabindex="0" aria-label="Next" onclick="moveSlide(1)">❯</div>
     <div class="testimonial-container">
         <div class="testimonial-track" id="t-track">
             <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-nikkia-lo-2025.jpg" alt="Nikkia Lo" class="t-img">
-                <div class="t-info"><h3>Nikkia Lo</h3><span>IDSOL 2025 Participant</span></div>
-                <p class="t-body">"Participating in IDSOL was a transformative experience that pushed the boundaries of my data science knowledge and connected me with brilliant minds from around the world."</p>
+                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-nikkia-lo-2025.jpg" alt="nikkia lo" class="t-img">
+                <div class="t-info"><h3>Nikkia Lo</h3><span>🇭🇰 HKU</span></div>
+                <div class="t-body"><p>"The organization has had a huge influence on me, and I'm excited to pursue my ultimate goal of incubating a startup at HKSTP."</p></div>
             </div>
             <div class="t-card">
-                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-nikkia-lo-2025.jpg" alt="IDSOL Alumni" class="t-img">
-                <div class="t-info"><h3>IDSOL Alumni</h3><span>Gold Medalist</span></div>
-                <p class="t-body">"The competition gave me the real-world problem-solving skills that no classroom could replicate. IDSOL shaped my career in AI and data science significantly."</p>
+                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-sakib-rabbani.jpg" alt="Sakib" class="t-img">
+                <div class="t-info"><h3>Sakib Rabbani</h3><span>🇭🇰 JP Morgan HK</span></div>
+                <div class="t-body"><p>"The IBCOL IDSOL, and KBI network connect me with industry professionals, which helped me get a job in Software Engineering at JP Morgan HK."</p></div>
+            </div>
+            <div class="t-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-niya-abdullahi.jpg" alt="Niya" class="t-img">
+                <div class="t-info"><h3>Niya Abdullahi</h3><span>🇨🇦 TMU</span></div>
+                <div class="t-body"><p>"Meeting people from around the world and being surrounded by such incredible innovative projects, talents and bright minds will always be a core memory for me."</p></div>
+            </div>
+            <div class="t-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-dion-kamst.jpg" alt="Dion" class="t-img">
+                <div class="t-info"><h3>Dion Kamst</h3><span>Production Lead</span></div>
+                <div class="t-body"><p>"IBCOL, IDSOL, and DigiQuest were a transformative experience for me... I gained invaluable insights into working across cultures and making impactful changes."</p></div>
+            </div>
+            <div class="t-card">
+                <img src="https://cdn.kb.institute/eto-2026/general/testimonial/kbi-profile-isabel-yan.jpg" alt="Isabel" class="t-img">
+                <div class="t-info"><h3>Dr. Prof. Isabel Yan</h3><span>🇭🇰 CityU</span></div>
+                <div class="t-body"><p>"The Königsberger Bridges Institute comprises a great team of professionals... They are very dedicated to advancing students' knowledge and application skills."</p></div>
             </div>
         </div>
     </div>
     <div class="carousel-controls" id="carousel-dots"></div>
 </div>
+</section>
 
 <!-- Global Connections -->
+<section class="snap-panel" id="section-logos">
 <div class="section-header reveal"><h1>Global Connections</h1></div>
 <div id="logo-wall-container" class="reveal"></div>
+</section>
 
-<!-- CTA -->
-<section class="cta-section reveal">
-    <div class="cta-anim-bg" id="trigger-final">
-        <div class="brand-zone" id="brand-box">
-            <canvas id="traceCanvas"></canvas>
-            <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo Reveal">
+<!-- CTA + Footer -->
+<section class="snap-panel" id="section-final">
+    <div class="cta-section reveal">
+        <div class="cta-anim-bg" id="trigger-final">
+            <div class="brand-zone" id="brand-box">
+                <canvas id="traceCanvas"></canvas>
+                <img id="logo-reveal-img" src="https://cdn.kb.institute/KBI-logo-light.png" alt="KBI Logo Reveal">
+            </div>
+        </div>
+        <div class="cta-content">
+            <div class="cta-title">Ready to Compete?</div>
+            <p class="cta-sub">Join thousands of data scientists from over 120 countries at IDSOL 2026.</p>
+            <a href="registration.html" class="cta-btn">Register Now</a>
         </div>
     </div>
-    <div class="cta-content">
-        <div class="cta-title">Ready to Compete?</div>
-        <p class="cta-sub">Join thousands of data scientists from over 120 countries at IDSOL 2026.</p>
-        <a href="registration.html" class="cta-btn">Register Now</a>
-    </div>
 </section>
+
+</main>
 
 <!-- Scripts -->
 <script>
@@ -348,7 +582,7 @@
         let rotationIndex = 0;
 
         function populateWall(page) {
-            logoWall.innerHTML = '';
+            const fragment = document.createDocumentFragment();
             const start = page * ITEMS_PER_PAGE;
             const end = Math.min(start + ITEMS_PER_PAGE, LOGO_SOURCES.length);
             for (let i = start; i < end; i++) {
@@ -360,8 +594,9 @@
                 img.alt = 'Partner logo';
                 img.loading = 'lazy';
                 container.appendChild(img);
-                logoWall.appendChild(container);
+                fragment.appendChild(container);
             }
+            logoWall.replaceChildren(fragment);
         }
 
         populateWall(0);
@@ -430,5 +665,112 @@
     }
 </script>
 <script src="js/shared.js"></script>
+<script>
+(function () {
+    'use strict';
+    const panel = document.getElementById('section-final');
+    const footer = document.querySelector('.site-footer');
+    if (panel && footer) panel.appendChild(footer);
+})();
+</script>
+<script>
+(function () {
+    'use strict';
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let pulseWave = -200;
+
+    class Node {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * (canvas.height * 2);
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 3 + 2;
+            this.z = Math.random() * 0.8 + 0.2;
+            this.baseAlpha = 0.3 + Math.random() * 0.4;
+        }
+        update() {
+            this.x += this.vx * this.z;
+            this.y += this.vy * this.z;
+            if (this.x < 0) this.x += canvas.width;
+            if (this.x > canvas.width) this.x -= canvas.width;
+            const limit = canvas.height * 3;
+            if (this.y < 0) this.y += limit;
+            if (this.y > limit) this.y -= limit;
+        }
+        draw(scrollY) {
+            const drawY = (this.y - scrollY * this.z) % (canvas.height * 2);
+            if (drawY < -50 || drawY > canvas.height + 50) return;
+            let alpha = this.baseAlpha;
+            const dx = this.x - (canvas.width >> 1);
+            const dy = drawY - (canvas.height >> 1);
+            const dist = Math.hypot(dx, dy);
+            if (Math.abs(dist - pulseWave) < 50) {
+                alpha = 1; ctx.shadowBlur = 15; ctx.shadowColor = '#A5D7E8';
+            } else { ctx.shadowBlur = 0; }
+            ctx.beginPath();
+            ctx.arc(this.x, drawY, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(165,215,232,${alpha})`;
+            ctx.fill();
+        }
+    }
+
+    function initCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        nodes = [];
+        const nodeCount = Math.min(160, Math.floor((canvas.width * canvas.height) / 11000));
+        for (let i = 0; i < nodeCount; i++) nodes.push(new Node());
+    }
+
+    function drawBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pulseWave += 4;
+        if (pulseWave > canvas.width + 500) pulseWave = -200;
+        const scrollY = window.scrollY;
+        const hw = canvas.width >> 1;
+        const hh = canvas.height >> 1;
+        for (let i = 0; i < nodes.length; i++) {
+            const n = nodes[i];
+            n.update();
+            const py = (n.y - scrollY * n.z) % (canvas.height * 2);
+            if (py < -50 || py > canvas.height + 50) continue;
+            n.draw(scrollY);
+            for (let j = i + 1; j < nodes.length; j++) {
+                const nj = nodes[j];
+                const pnj = (nj.y - scrollY * nj.z) % (canvas.height * 2);
+                if (pnj < -50 || pnj > canvas.height + 50) continue;
+                const dist = Math.hypot(n.x - nj.x, py - pnj);
+                if (dist >= 220) continue;
+                const opacity = (1 - dist / 220) * 0.4;
+                ctx.beginPath();
+                ctx.moveTo(n.x, py);
+                ctx.lineTo(nj.x, pnj);
+                const midX = (n.x + nj.x) * 0.5;
+                const midY = (py + pnj) * 0.5;
+                const cDist = Math.hypot(midX - hw, midY - hh);
+                if (Math.abs(cDist - pulseWave) < 100) {
+                    ctx.strokeStyle = `rgba(165,215,232,${opacity * 2.5})`;
+                    ctx.lineWidth = 2;
+                } else {
+                    ctx.strokeStyle = `rgba(165,215,232,${opacity})`;
+                    ctx.lineWidth = 1;
+                }
+                ctx.stroke();
+            }
+        }
+        requestAnimationFrame(drawBackground);
+    }
+
+    initCanvas();
+    drawBackground();
+    window.addEventListener('resize', initCanvas, { passive: true });
+    setTimeout(() => canvas.classList.add('active'), 300);
+})();
+</script>
 </body>
 </html>

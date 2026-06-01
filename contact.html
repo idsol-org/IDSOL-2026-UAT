@@ -12,13 +12,12 @@
         .section-header { margin: 80px 0 60px; }
         .section-header h2 { font-size: clamp(2rem,6vw,2.7rem); letter-spacing: 10px; }
 
-        .container { 
-            max-width: 1100px; margin: 0 auto; 
-            padding: 0 20px 100px; width: 100%; 
-            box-sizing: border-box; position: relative; z-index: 1; 
+        .container {
+            max-width: 1100px; margin: 0 auto;
+            padding: 0 20px 100px; width: 100%;
+            box-sizing: border-box; position: relative; z-index: 1;
         }
 
-        /* Contact cards */
         .contact-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .info-card-link { text-decoration: none; color: inherit; display: block; }
         .info-card {
@@ -43,27 +42,7 @@
         .info-card p { color: #bbb; font-size: 0.9rem; margin: 0; line-height: 1.6; }
         .info-card .contact-value { color: white; font-size: 0.95rem; margin-top: 10px; font-weight: 600; word-break: break-all; }
 
-        /* Social links section */
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
-        .social-box { background: var(--glass-deep); border: 1px solid var(--border-bright); padding: 40px; border-radius: 4px; backdrop-filter: blur(10px); }
-        .social-box h3 { color: var(--node-bright); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 25px; font-size: 1rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 15px; }
-        .social-links { display: flex; flex-direction: column; gap: 16px; }
-        .social-link { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #bbb; font-size: 0.9rem; padding: 12px 15px; border: 1px solid var(--border-muted); border-radius: 4px; transition: all 0.3s ease; }
-        .social-link:hover { color: var(--node-bright); border-color: var(--node-bright); background: rgba(156,233,255,0.05); transform: translateX(4px); }
-        .social-link i { color: var(--node-blue); flex-shrink: 0; transition: color 0.3s; }
-        .social-link:hover i { color: var(--node-bright); }
-
-        /* FAQ section */
-        .faq-list { max-width: 800px; margin: 0 auto; }
-        .faq-item { border-bottom: 1px solid var(--border-muted); }
-        .faq-trigger { width: 100%; padding: 20px 0; background: none; border: none; color: var(--node-bright); text-align: left; cursor: pointer; font-size: 0.95rem; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: opacity 0.2s; }
-        .faq-trigger:hover { opacity: 0.8; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.9rem; color: #bbb; line-height: 1.7; padding: 0; }
-        .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 20px; }
-        .faq-chevron { flex-shrink: 0; transition: transform 0.3s; color: var(--node-blue); }
-        .faq-item.active .faq-chevron { transform: rotate(180deg); }
-
-        @media (max-width: 900px) { .contact-info-grid { grid-template-columns: 1fr; } .social-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .contact-info-grid { grid-template-columns: 1fr; } }
         @media (max-width: 600px) { .section-header h2 { font-size: 1.8rem; letter-spacing: 5px; } }
     </style>
 </head>
@@ -75,7 +54,6 @@
 </div>
 
 <div class="container">
-
     <div class="contact-info-grid">
         <a href="mailto:info@idsol.org" class="info-card-link reveal">
             <div class="info-card">
@@ -102,102 +80,8 @@
             </div>
         </a>
     </div>
-
-    <div class="divider reveal"></div>
-
-    <div class="section-header reveal"><h2>Follow Us</h2></div>
-
-    <div class="social-grid">
-        <div class="social-box reveal">
-            <h3>IDSOL</h3>
-            <div class="social-links">
-                <a href="https://2026.idsol.org" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="globe" style="width:20px;height:20px;"></i>
-                    Official Website — 2026.idsol.org
-                </a>
-                <a href="https://www.linkedin.com/company/idsol-org" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="linkedin" style="width:20px;height:20px;"></i>
-                    LinkedIn — IDSOL Organization
-                </a>
-                <a href="https://www.instagram.com/idsol_org/" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="instagram" style="width:20px;height:20px;"></i>
-                    Instagram — @idsol_org
-                </a>
-            </div>
-        </div>
-        <div class="social-box reveal">
-            <h3>KBI — Königsberger Bridges Institute</h3>
-            <div class="social-links">
-                <a href="https://www.kb.institute/" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="globe" style="width:20px;height:20px;"></i>
-                    Official Website — kb.institute
-                </a>
-                <a href="https://www.linkedin.com/company/kbi-eu/" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="linkedin" style="width:20px;height:20px;"></i>
-                    LinkedIn — KBI EU
-                </a>
-                <a href="https://www.instagram.com/kbi.eu/" target="_blank" rel="noopener" class="social-link">
-                    <i data-lucide="instagram" style="width:20px;height:20px;"></i>
-                    Instagram — @kbi.eu
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider reveal"></div>
-
-    <div class="section-header reveal"><h2>Frequently Asked Questions</h2></div>
-
-    <div class="faq-list reveal">
-        <div class="faq-item">
-            <button class="faq-trigger">
-                When does IDSOL 2026 registration officially open?
-                <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
-            </button>
-            <div class="faq-answer">Official registration opens in mid-2026. We encourage teams to register their interest now to receive early notifications and preparation resources. Use the Registration Interest form to stay updated.</div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-trigger">
-                Can teams from any country participate?
-                <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
-            </button>
-            <div class="faq-answer">Yes, IDSOL 2026 is open to participants from all countries. The competition has previously welcomed teams from over 120 nations. There are no geographic restrictions on eligibility.</div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-trigger">
-                What language must submissions be in?
-                <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
-            </button>
-            <div class="faq-answer">All submissions, presentations, and communications must be in English. This ensures fair assessment by our international panel of judges.</div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-trigger">
-                How long does it take to hear back after submission?
-                <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
-            </button>
-            <div class="faq-answer">After the Qualifier Round closes in October 2026, results (invitation, conditional invitation, or rejection) are communicated within four to six weeks. Teams in the Trial Period (Phase 0) receive feedback within approximately two weeks.</div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-trigger">
-                Who do I contact if I have a technical problem with my submission?
-                <i data-lucide="chevron-down" class="faq-chevron" style="width:20px;height:20px;"></i>
-            </button>
-            <div class="faq-answer">Please email registration@idsol.org with the subject line "Technical Submission Issue – [Team Name]". Our team will respond within 48 business hours.</div>
-        </div>
-    </div>
-
 </div>
 
-<script>
-    document.querySelectorAll('.faq-trigger').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            if (!isOpen) item.classList.add('active');
-        });
-    });
-</script>
 <script src="js/shared.js"></script>
 </body>
 </html>

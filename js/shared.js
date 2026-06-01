@@ -8,6 +8,7 @@
 
     /* ── 1. Determine current page for active link ── */
     const path = window.location.pathname.split('/').pop() || 'index.html';
+    const isHome = path === 'index.html' || path === '';
 
     /* ── 2. Nav HTML ── */
     const navHTML = `
@@ -35,6 +36,7 @@
             </div>
         </li>
         <li><a href="registration.html" data-page="registration.html">Registration</a></li>
+        <li><a href="faq.html"          data-page="faq.html">FAQ</a></li>
         <li><a href="contact.html"      data-page="contact.html">Contact</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -57,6 +59,7 @@
             </div>
         </li>
         <li><a href="registration.html" data-page="registration.html">Registration</a></li>
+        <li><a href="faq.html"          data-page="faq.html">FAQ</a></li>
         <li><a href="contact.html"      data-page="contact.html">Contact</a></li>
     </ul>
 </div>
@@ -71,7 +74,7 @@
             <div class="footer-col">
                 <h4>IDSOL: International Data Science Olympiad</h4>
                 <div class="footer-icons">
-                    <a href="https://2026.idsol.org/idsol" target="_blank" rel="noopener" title="Website">
+                    <a href="https://2026.idsol.org" target="_blank" rel="noopener" title="IDSOL Website">
                         <i data-lucide="globe" style="width:24px;height:24px;"></i>
                     </a>
                     <a href="https://www.linkedin.com/company/idsol-org" target="_blank" rel="noopener" title="LinkedIn">
@@ -145,9 +148,9 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    /* ── 9. Nodal background canvas ── */
+    /* ── 9. Nodal background canvas (non-home pages; home uses pulse script in index.html) ── */
     const canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
+    if (canvas && !isHome) {
     const ctx = canvas.getContext('2d');
     let nodes = [];
 
@@ -223,6 +226,7 @@
     drawCanvas();
     window.addEventListener('resize', initCanvas, { passive: true });
     setTimeout(() => canvas.classList.add('active'), 300);
+    }
 
     /* ── 10. Lucide icons (after nav/footer injected) ── */
     if (window.lucide) lucide.createIcons();
