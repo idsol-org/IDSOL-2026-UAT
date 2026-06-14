@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eligibility | IDSOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
-        html { height: 100%; }
-        body { min-height: 100vh; display: flex; flex-direction: column; }
-        .container { flex: 1 0 auto; max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
-
         /* Table */
         .eligibility-table { width: 100%; border-collapse: collapse; background: rgba(156,233,255,0.03); border: 1px solid var(--border-muted); backdrop-filter: blur(10px); }
         .eligibility-table th { background: rgba(74,125,255,0.1); color: var(--node-bright); text-transform: uppercase; letter-spacing: 2px; padding: 20px; text-align: left; font-size: 0.85rem; border-bottom: 2px solid var(--node-blue); }
@@ -28,7 +24,7 @@
         .label-pill { display: inline-block; background: var(--node-blue); color: white; font-size: 0.7rem; font-weight: bold; padding: 4px 12px; border-radius: 2px; margin-bottom: 15px; text-transform: uppercase; }
 
         /* Validity */
-        .validity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .validity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .validity-box { background: var(--glass-deep); border: 1px solid var(--border-bright); padding: 30px; border-radius: 4px; }
         .validity-box h3 { color: var(--node-bright); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; margin-bottom: 25px; border-bottom: 1px solid var(--node-blue); padding-bottom: 12px; }
         .param-item { margin-bottom: 18px; position: relative; padding-left: 20px; }
@@ -42,19 +38,30 @@
         .cta-btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         @media (max-width: 850px) {
+            .eligibility-table, .eligibility-table tbody, .eligibility-table tr { display: block; width: 100%; box-sizing: border-box; }
             .eligibility-table thead { display: none; }
-            .eligibility-table, .eligibility-table tbody, .eligibility-table tr { display: block; width: 100%; }
-            .eligibility-table tr { margin-bottom: 30px; border: 1px solid var(--border-bright); background: rgba(10,25,50,0.5); }
-            .eligibility-table td { display: block; width: 100% !important; box-sizing: border-box; border-bottom: 1px solid var(--border-muted); }
-            .eligibility-table td:first-child { background: var(--node-blue); color: #fff; padding: 12px 20px; font-size: 0.9rem; text-align: center; }
-            .arena-content { grid-template-columns: 1fr; }
-            .cta-btn-group { flex-direction: column; align-items: center; }
+            .eligibility-table tr { margin-bottom: 16px; border: 1px solid var(--border-bright); border-radius: 4px; overflow: hidden; background: var(--glass-frost); }
+            .eligibility-table td { display: block; width: 100% !important; box-sizing: border-box; padding: 16px 18px; text-align: center; }
+            .eligibility-table td:first-child { background: rgba(74,125,255,0.1); border-bottom: 1px solid var(--node-blue); }
+            .eligibility-table td:not(:first-child) { border-bottom: 1px solid var(--border-muted); }
+            .eligibility-table td:last-child { border-bottom: none; }
+            .arena-content, .validity-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2.1rem; letter-spacing: 8px; }
+            .arena-header { justify-content: center; text-align: center; }
+            .arena-cell { text-align: center; }
+            .validity-box h3 { text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .eligibility-table td { padding: 14px 14px; }
+            .arena-cell { padding: 22px 18px; }
+            .validity-box { padding: 24px 18px; }
         }
     </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 
+<div class="page-content">
 <div class="container">
     <div class="section-header reveal">
         <h2>Eligibility</h2>
@@ -178,7 +185,9 @@
         </div>
     </div>
 </div>
+</div>
 
+<script src="js/nav.js"></script>
 <script src="js/shared.js"></script>
 </body>
 </html>

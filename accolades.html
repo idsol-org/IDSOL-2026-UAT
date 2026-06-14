@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accolades & Achievements | IDSOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px 60px; position: relative; z-index: 1; }
-
         /* Medal grid */
         .medal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .tech-card { background: var(--glass-deep); border: 1px solid var(--border-bright); padding: 40px; border-radius: 4px; text-align: center; backdrop-filter: blur(10px); transition: transform 0.3s ease; }
@@ -39,15 +37,14 @@
         .final-cta h2 { font-size: 2.2rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; color: white; }
 
         @media (max-width: 850px) {
-            .academic-grid, .expanded-grid { grid-template-columns: 1fr; }
-            .section-header h1 { font-size: 1.8rem; letter-spacing: 5px; }
-            .final-cta h2 { font-size: 1.6rem; }
+            .medal-grid, .benefit-grid, .academic-grid, .expanded-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
 
+<div class="page-content">
 <div class="container">
     <div class="section-header reveal">
         <h1 style="font-size:clamp(1.8rem,6vw,2.8rem);text-transform:uppercase;letter-spacing:clamp(5px,2vw,12px);color:var(--node-bright);margin:0;display:inline-block;background:linear-gradient(90deg,transparent,var(--node-blue),transparent);background-size:100% 1px;background-repeat:no-repeat;background-position:bottom;padding-bottom:20px;">Accolades &amp; Achievements</h1>
@@ -142,7 +139,9 @@
         <a href="registration.html" class="btn btn-primary">Register NOW!</a>
     </div>
 </div>
+</div>
 
+<script src="js/nav.js"></script>
 <script src="js/shared.js"></script>
 </body>
 </html>

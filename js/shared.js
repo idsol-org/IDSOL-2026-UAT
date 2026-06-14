@@ -1,73 +1,18 @@
 /* ================================================================
    IDSOL 2026 — Shared JS
-   Injects nav + footer, nodal background, scroll reveal
+   Injects footer, nodal background, Lucide icons
    ================================================================ */
 
 (function () {
     'use strict';
 
-    /* ── 1. Determine current page for active link ── */
     const path = window.location.pathname.split('/').pop() || 'index.html';
     const isHome = path === 'index.html' || path === '';
 
-    /* ── 2. Nav HTML ── */
-    const navHTML = `
-<nav id="site-nav">
-    <a class="nav-logo" href="index.html">
-        <img src="https://cdn.kb.institute/eto-2026/IDSOL/Logo/Square_Dark_Background_2026_500.png" alt="IDSOL Logo">
-        <span class="nav-logo-text">IDSOL 2026</span>
-    </a>
-    <ul class="nav-links">
-        <li><a href="index.html" data-page="index.html">Home</a></li>
-        <li><a href="about.html" data-page="about.html">About Us</a></li>
-        <li>
-            <span>
-                Competition
-                <svg class="nav-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="4 6 8 10 12 6"/>
-                </svg>
-            </span>
-            <div class="nav-dropdown">
-                <a href="competition.html" data-page="competition.html">Overview</a>
-                <a href="eligibility.html"  data-page="eligibility.html">Eligibility</a>
-                <a href="timeline.html"     data-page="timeline.html">Timeline</a>
-                <a href="submission.html"   data-page="submission.html">Submission</a>
-                <a href="accolades.html"    data-page="accolades.html">Accolades</a>
-            </div>
-        </li>
-        <li><a href="registration.html" data-page="registration.html">Registration</a></li>
-        <li><a href="faq.html"          data-page="faq.html">FAQ</a></li>
-        <li><a href="contact.html"      data-page="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
-
-<div id="mobile-nav">
-    <ul>
-        <li><a href="index.html"        data-page="index.html">Home</a></li>
-        <li><a href="about.html"        data-page="about.html">About Us</a></li>
-        <li>
-            <span id="mob-comp-toggle">Competition ▾</span>
-            <div class="mobile-sub" id="mob-comp-sub">
-                <a href="competition.html" data-page="competition.html">Overview</a>
-                <a href="eligibility.html"  data-page="eligibility.html">Eligibility</a>
-                <a href="timeline.html"     data-page="timeline.html">Timeline</a>
-                <a href="submission.html"   data-page="submission.html">Submission</a>
-                <a href="accolades.html"    data-page="accolades.html">Accolades</a>
-            </div>
-        </li>
-        <li><a href="registration.html" data-page="registration.html">Registration</a></li>
-        <li><a href="faq.html"          data-page="faq.html">FAQ</a></li>
-        <li><a href="contact.html"      data-page="contact.html">Contact</a></li>
-    </ul>
-</div>
-<div class="nav-spacer"></div>`;
-
-    /* ── 3. Footer HTML ── */
+    /* ── Footer HTML ── */
     const footerHTML = `
 <footer class="site-footer">
+    <div class="site-footer__backdrop" aria-hidden="true"></div>
     <div class="footer-line"></div>
     <div class="footer-inner">
         <div class="footer-columns">
@@ -104,51 +49,11 @@
     </div>
 </footer>`;
 
-    /* ── 4. Inject into page ── */
-    document.body.insertAdjacentHTML('afterbegin', navHTML);
-    document.body.insertAdjacentHTML('beforeend', footerHTML);
+    if (!isHome) {
+        document.body.insertAdjacentHTML('beforeend', footerHTML);
+    }
 
-    /* ── 5. Mark active links ── */
-    document.querySelectorAll('[data-page]').forEach(a => {
-        if (a.getAttribute('data-page') === path) a.classList.add('active');
-    });
-
-    /* ── 6. Hamburger toggle ── */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        mobileNav.classList.toggle('open');
-    });
-
-    /* Mobile competition sub-menu */
-    document.getElementById('mob-comp-toggle').addEventListener('click', () => {
-        document.getElementById('mob-comp-sub').classList.toggle('open');
-    });
-
-    /* Close mobile nav on link click */
-    mobileNav.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            hamburger.classList.remove('open');
-            mobileNav.classList.remove('open');
-        });
-    });
-
-    /* ── 7. Nav scroll style ── */
-    const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-
-    /* ── 8. Scroll reveal ── */
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('revealed');
-        });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /* ── 9. Nodal background canvas (non-home pages; home uses pulse script in index.html) ── */
+    /* ── Nodal background canvas (non-home pages; home uses pulse script in index.html) ── */
     const canvas = document.getElementById('bg-canvas');
     if (canvas && !isHome) {
     const ctx = canvas.getContext('2d');
@@ -228,7 +133,7 @@
     setTimeout(() => canvas.classList.add('active'), 300);
     }
 
-    /* ── 10. Lucide icons (after nav/footer injected) ── */
+    /* ── Lucide icons (after footer injected) ── */
     if (window.lucide) lucide.createIcons();
     else window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });
 })();

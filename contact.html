@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | IDSOL 2026</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <link rel="stylesheet" href="css/shared.css">
     <style>
-        body { display: flex; flex-direction: column; min-height: 100vh; }
-
         .section-header { margin: 80px 0 60px; }
         .section-header h2 { font-size: clamp(2rem,6vw,2.7rem); letter-spacing: 10px; }
 
@@ -49,6 +47,7 @@
 <body>
 <canvas id="bg-canvas"></canvas>
 
+<div class="page-content">
 <div class="section-header reveal" style="text-align:center;padding:0 20px;">
     <h2>Contact Us</h2>
 </div>
@@ -81,7 +80,9 @@
         </a>
     </div>
 </div>
+</div>
 
+<script src="js/nav.js"></script>
 <script src="js/shared.js"></script>
 </body>
 </html>
