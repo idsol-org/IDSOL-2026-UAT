@@ -33,8 +33,17 @@
         .institution-tag { background: rgba(156,233,255,0.1); color: var(--node-bright); border: 1px solid var(--node-blue); padding: 6px 20px; font-size: 0.75rem; border-radius: 50px; display: inline-block; margin-top: 25px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
         /* CTA */
-        .final-cta { text-align: center; padding: 80px 20px; background: radial-gradient(circle at center,rgba(74,125,255,0.1) 0%,transparent 70%); }
-        .final-cta h2 { font-size: 2.2rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; color: white; }
+        .cta-section { text-align: center; padding: 100px 20px; }
+        .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--node-bright); font-weight: 900; }
+        .signup-btn {
+            display: inline-block; padding: clamp(14px,4vw,18px) clamp(32px,8vw,50px);
+            border-radius: 50px; text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 800; font-size: clamp(0.85rem,4vw,0.95rem); transition: all 0.3s ease;
+            background: var(--node-bright); color: var(--bg-darker); border: 1px solid var(--node-bright);
+            box-shadow: 0 10px 30px rgba(156,233,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(156,233,255,0.4); background: white; }
+        .award-note { text-align: center; max-width: 800px; margin: 40px auto 80px; padding: 0 20px; color: var(--footer-grey); font-size: 0.95rem; line-height: 1.7; }
 
         @media (max-width: 850px) {
             .medal-grid, .benefit-grid, .academic-grid, .expanded-grid { grid-template-columns: 1fr; }
@@ -46,42 +55,37 @@
 
 <div class="page-content">
 <div class="container">
-    <div class="section-header reveal">
-        <h1 style="font-size:clamp(1.8rem,6vw,2.8rem);text-transform:uppercase;letter-spacing:clamp(5px,2vw,12px);color:var(--node-bright);margin:0;display:inline-block;background:linear-gradient(90deg,transparent,var(--node-blue),transparent);background-size:100% 1px;background-repeat:no-repeat;background-position:bottom;padding-bottom:20px;">Accolades &amp; Achievements</h1>
-        <p>Rewarding excellence in data science, innovation, and institutional leadership.</p>
-    </div>
-
-    <div class="section-header reveal"><h2>Global Excellence</h2><p>International Medals &amp; Career Rewards</p></div>
+    <div class="section-header reveal"><h1>Global Excellence</h1><p>International Medals &amp; Career Rewards</p></div>
 
     <section class="medal-grid">
         <div class="tech-card reveal">
             <span class="medal-icon">🥇</span>
             <h2 class="medal-title">Gold Medal</h2>
             <ul class="list-items">
-                <li>IDSOL 2026 2D INFRA Gold</li>
-                <li>IDSOL 2026 2D PROD Gold</li>
-                <li>IDSOL 2026 3D INFRA Gold</li>
-                <li>IDSOL 2026 3D PROD Gold</li>
+                <li>IDSOL 2026 2D ARC Gold</li>
+                <li>IDSOL 2026 2D DEV Gold</li>
+                <li>IDSOL 2026 3D ARC Gold</li>
+                <li>IDSOL 2026 3D DEV Gold</li>
             </ul>
         </div>
         <div class="tech-card reveal">
             <span class="medal-icon">🥈</span>
             <h2 class="medal-title">Silver Medal</h2>
             <ul class="list-items">
-                <li>IDSOL 2026 2D INFRA Silver</li>
-                <li>IDSOL 2026 2D PROD Silver</li>
-                <li>IDSOL 2026 3D INFRA Silver</li>
-                <li>IDSOL 2026 3D PROD Silver</li>
+                <li>IDSOL 2026 2D ARC Silver</li>
+                <li>IDSOL 2026 2D DEV Silver</li>
+                <li>IDSOL 2026 3D ARC Silver</li>
+                <li>IDSOL 2026 3D DEV Silver</li>
             </ul>
         </div>
         <div class="tech-card reveal">
             <span class="medal-icon">🥉</span>
             <h2 class="medal-title">Bronze Medal</h2>
             <ul class="list-items">
-                <li>IDSOL 2026 2D INFRA Bronze</li>
-                <li>IDSOL 2026 2D PROD Bronze</li>
-                <li>IDSOL 2026 3D INFRA Bronze</li>
-                <li>IDSOL 2026 3D PROD Bronze</li>
+                <li>IDSOL 2026 2D ARC Bronze</li>
+                <li>IDSOL 2026 2D DEV Bronze</li>
+                <li>IDSOL 2026 3D ARC Bronze</li>
+                <li>IDSOL 2026 3D DEV Bronze</li>
             </ul>
         </div>
     </section>
@@ -129,14 +133,11 @@
         </div>
     </div>
 
-    <p class="sub-text reveal" style="text-align:center;max-width:800px;margin:60px auto;color:var(--footer-grey);line-height:1.7;">
-        International medals will be awarded at the Competition Finals.<br>
-        Other accolades shall be sent directly to awardees as verifiable digital credentials.
-    </p>
+    <div class="award-note reveal">International medals will be awarded at the Competition Finals.<br>Other accolades shall be sent directly to awardees as verifiable digital credentials.</div>
 
-    <div class="final-cta reveal">
-        <h2>Do you have what it takes?</h2>
-        <a href="registration.html" class="btn btn-primary">Register NOW!</a>
+    <div class="cta-section reveal">
+        <h2 class="cta-title">Do you have what it takes?</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 </div>
 </div>

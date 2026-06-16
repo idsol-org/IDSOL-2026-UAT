@@ -32,10 +32,20 @@
         .param-item b { color: var(--node-bright); font-size: 0.9rem; display: block; margin-bottom: 2px; }
         .param-item p { margin: 0; font-size: 0.85rem; color: #bbb; }
 
-        /* CTA */
         .final-cta { text-align: center; padding: 60px 20px; }
         .final-cta h2 { font-size: clamp(1.4rem, 4vw, 2rem); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 40px; }
         .cta-btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .cta-section { text-align: center; padding: 100px 20px; }
+        .cta-title { font-size: clamp(1.8rem,7vw,2.4rem); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; color: var(--node-bright); font-weight: 900; }
+        .signup-btn {
+            display: inline-block; padding: clamp(14px,4vw,18px) clamp(32px,8vw,50px);
+            border-radius: 50px; text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 800; font-size: clamp(0.85rem,4vw,0.95rem); transition: all 0.3s ease;
+            background: var(--node-bright); color: var(--bg-darker); border: 1px solid var(--node-bright);
+            box-shadow: 0 10px 30px rgba(156,233,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(156,233,255,0.4); background: white; }
+        .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--footer-grey); font-size: 0.95rem; line-height: 1.7; }
 
         @media (max-width: 850px) {
             .eligibility-table, .eligibility-table tbody, .eligibility-table tr { display: block; width: 100%; box-sizing: border-box; }
@@ -107,33 +117,33 @@
     <div class="arena-container">
         <div class="arena-block reveal">
             <div class="arena-header">
-                <i data-lucide="shield-half" style="width:20px;height:20px;color:#9ce9ff;"></i>
-                <h3>Enterprise-Orientated Infrastructure (INFRA)</h3>
+                <i data-lucide="layers" style="width:20px;height:20px;color:#9ce9ff;"></i>
+                <h3>Solution Architecture (ARC)</h3>
             </div>
             <div class="arena-content">
                 <div class="arena-cell">
                     <span class="label-pill">Schoolers Stream</span>
-                    <p class="sub-text">The competition arena for Schoolers Stream Olympiad Projects submitted according to the parameters for the INFRA Stream.</p>
+                    <p class="sub-text">The competition arena for Schoolers Stream Olympiad Projects submitted according to the parameters for the ARC Stream.</p>
                 </div>
                 <div class="arena-cell">
                     <span class="label-pill">Students Stream</span>
-                    <p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the INFRA Stream.</p>
+                    <p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the ARC Stream.</p>
                 </div>
             </div>
         </div>
         <div class="arena-block reveal">
             <div class="arena-header">
-                <i data-lucide="package" style="width:20px;height:20px;color:#9ce9ff;"></i>
-                <h3>Consumer-Orientated Products (PROD)</h3>
+                <i data-lucide="code-2" style="width:20px;height:20px;color:#9ce9ff;"></i>
+                <h3>Solution Development (DEV)</h3>
             </div>
             <div class="arena-content">
                 <div class="arena-cell">
                     <span class="label-pill">Schoolers Stream</span>
-                    <p class="sub-text">The competition arena for Schoolers Stream Olympiad Projects submitted according to the parameters for the PROD Stream.</p>
+                    <p class="sub-text">The competition arena for Schoolers Stream Olympiad Projects submitted according to the parameters for the DEV Stream.</p>
                 </div>
                 <div class="arena-cell">
                     <span class="label-pill">Students Stream</span>
-                    <p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the PROD Stream.</p>
+                    <p class="sub-text">The competition arena for Students Stream Olympiad Projects submitted according to the parameters for the DEV Stream.</p>
                 </div>
             </div>
         </div>
@@ -145,10 +155,6 @@
         <h2>Validity Parameters</h2>
         <p>Criteria for Project Acceptance</p>
     </div>
-
-    <p class="sub-text reveal" style="text-align:center;margin-bottom:40px;color:#888;font-style:italic;">
-        The following parameters define what is considered valid for the IDSOL competitions. Invalidity results in disqualification.
-    </p>
 
     <div class="validity-grid reveal">
         <div class="validity-box">
@@ -162,7 +168,7 @@
         <div class="validity-box">
             <h3>Project Validity</h3>
             <div class="param-item"><b>Project Name</b><p>Must match the team name exactly.</p></div>
-            <div class="param-item"><b>Project Type</b><p>Classified as Enterprise-Orientated Infrastructure (INFRA) or Consumer-Orientated Products (PROD).</p></div>
+            <div class="param-item"><b>Project Type</b><p>Classified as Architecture (ARC) or Development (DEV).</p></div>
             <div class="param-item"><b>Representation</b><p>Must align with Team Representation.</p></div>
         </div>
         <div class="validity-box">
@@ -173,16 +179,10 @@
         </div>
     </div>
 
-    <p class="sub-text reveal" style="text-align:center;max-width:800px;margin:60px auto;color:var(--footer-grey);line-height:1.7;">
-        KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.
-    </p>
-
-    <div class="final-cta reveal">
-        <h2>Claim your place in the 2026 cohort</h2>
-        <div class="cta-btn-group">
-            <a href="timeline.html" class="btn btn-outline">See Timeline</a>
-            <a href="registration.html" class="btn btn-primary">Register NOW!</a>
-        </div>
+    <div class="note-box reveal">KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.</div>
+    <div class="cta-section reveal">
+        <h2 class="cta-title">Claim your place in the 2026 cohort</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 </div>
 </div>

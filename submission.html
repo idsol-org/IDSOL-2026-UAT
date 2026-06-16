@@ -137,9 +137,16 @@
 
         .note-box { text-align: center; max-width: 800px; margin: 60px auto; padding: 0 20px; color: var(--footer-grey); font-size: 0.95rem; line-height: 1.7; }
 
-        .final-cta { text-align: center; padding: clamp(60px, 10vw, 100px) 20px; }
-        .final-cta h2 { font-size: clamp(1.5rem, 6vw, 2.4rem); letter-spacing: clamp(3px, 1vw, 8px); text-transform: uppercase; margin-bottom: 40px; color: var(--node-bright); font-weight: 900; text-shadow: 0 0 20px rgba(156, 233, 255, 0.35); }
-        .cta-btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .cta-section { text-align: center; padding: clamp(60px, 10vw, 100px) 20px; }
+        .cta-title { font-size: clamp(1.5rem, 6vw, 2.4rem); letter-spacing: clamp(3px, 1vw, 8px); text-transform: uppercase; margin-bottom: 40px; color: var(--node-bright); font-weight: 900; text-shadow: 0 0 20px rgba(156, 233, 255, 0.35); }
+        .signup-btn {
+            display: inline-block; padding: clamp(14px,4vw,18px) clamp(32px,8vw,50px);
+            border-radius: 50px; text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-weight: 800; font-size: clamp(0.85rem,4vw,0.95rem); transition: all 0.3s ease;
+            background: var(--node-bright); color: var(--bg-darker); border: 1px solid var(--node-bright);
+            box-shadow: 0 10px 30px rgba(156,233,255,0.2);
+        }
+        .signup-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(156,233,255,0.4); background: white; }
 
         @media (max-width: 850px) {
             .roadmap-block {
@@ -251,7 +258,7 @@
 
     <div class="criteria-grid">
         <div class="criteria-card reveal">
-            <h3>Enterprise-orientated Infrastructure (INFRA)</h3>
+            <h3>Solution Architecture (ARC)</h3>
             <div class="metric-block">
                 <div class="metric-header">
                     <span class="metric-title">Design Thinking Competency</span>
@@ -259,8 +266,8 @@
                 </div>
                 <span class="metric-question">"How well are you solving the problem?"</span>
                 <ul class="metric-details">
-                    <li>The project addresses a well-defined, large-scale problem area with succinct value propositions.</li>
-                    <li>The project is comprehensive and complete, addressing key enterprise stakeholder requirements.</li>
+                    <li>The project addresses a well-defined problem area with succinct value propositions uniquely leveraging DSAI principles.</li>
+                    <li>The project is comprehensive and complete, addressing key stakeholder requirements and challenges.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
             </div>
@@ -272,7 +279,7 @@
                 <span class="metric-question">"Do you understand what you are doing?"</span>
                 <ul class="metric-details">
                     <li>The project team shows understanding of DSAI concepts from first principles.</li>
-                    <li>The project correctly applies DSAI principles to their enterprise solution design.</li>
+                    <li>The project correctly applies DSAI principles, anticipating and managing risks.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
             </div>
@@ -284,7 +291,7 @@
                 <span class="metric-question">"Do others understand what you are doing?"</span>
                 <ul class="metric-details">
                     <li>The project's components, flow, and rationale are clearly articulated via diagrams, narratives, or visual aids.</li>
-                    <li>The project's technicality is explained in accessible language for comprehension by non-experts.</li>
+                    <li>The project's technicality is explained in accessible language for non-experts.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div>
             </div>
@@ -295,24 +302,24 @@
                 </div>
                 <span class="metric-question">"How are you contributing to the frontier?"</span>
                 <ul class="metric-details">
-                    <li>The project is proposing a new way to solve well-established problems or solving relatively new problems.</li>
-                    <li>The project cites prior art and improves on the states-of-the-art proportionate to problem complexity.</li>
+                    <li>The project proposes a new way to solve well-established problems or addresses relatively new problems.</li>
+                    <li>The project cites prior art and improves on the state-of-the-art proportionate to problem complexity.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:10%"></div></div>
             </div>
         </div>
 
         <div class="criteria-card reveal">
-            <h3>Consumer-orientated Products (PROD)</h3>
+            <h3>Solution Development (DEV)</h3>
             <div class="metric-block">
                 <div class="metric-header">
-                    <span class="metric-title">Design Thinking Competency</span>
+                    <span class="metric-title">Solution Design Competency</span>
                     <span class="metric-pct">40%</span>
                 </div>
-                <span class="metric-question">"How well are you solving the problem?"</span>
+                <span class="metric-question">"How well are you achieving your development goal?"</span>
                 <ul class="metric-details">
-                    <li>The project addresses a well-defined, individual-scale problem area with succinct value propositions.</li>
-                    <li>The project is comprehensive and complete, addressing key individual stakeholder requirements.</li>
+                    <li>The project demonstrates quality in engineering design, such as modularity and effective use of external resources.</li>
+                    <li>The project accounts for non-tech and off-chain support systems, such as governance and trust frameworks.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div>
             </div>
@@ -323,32 +330,32 @@
                 </div>
                 <span class="metric-question">"Do you understand what you are doing?"</span>
                 <ul class="metric-details">
-                    <li>The project team shows understanding of DSAI concepts from first principles.</li>
-                    <li>The project correctly applies DSAI principles to their consumer solution design.</li>
+                    <li>The project shows a structured approach to applying elemental DSAI principles in technical specifications.</li>
+                    <li>The project anticipates challenges of adapting DSAI elements with adaptation or mitigation strategies.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div>
             </div>
             <div class="metric-block">
                 <div class="metric-header">
-                    <span class="metric-title">Presentability (Explainability)</span>
+                    <span class="metric-title">Presentability (Communication)</span>
                     <span class="metric-pct">20%</span>
                 </div>
                 <span class="metric-question">"Do others understand what you are doing?"</span>
                 <ul class="metric-details">
-                    <li>The project's components, flow, and rationale are clearly articulated via diagrams, narratives, or visual aids.</li>
-                    <li>The project's technicality is explained in accessible language for comprehension by non-experts.</li>
+                    <li>The project specifications clearly communicate functionality, structure, and intended outcomes.</li>
+                    <li>The project documentation is clearly organized for comprehension by non-experts or engineers.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div>
             </div>
             <div class="metric-block">
                 <div class="metric-header">
-                    <span class="metric-title">Quality (Originality)</span>
+                    <span class="metric-title">Quality (Completeness)</span>
                     <span class="metric-pct">10%</span>
                 </div>
-                <span class="metric-question">"How are you contributing to the frontier?"</span>
+                <span class="metric-question">"How robust is your result?"</span>
                 <ul class="metric-details">
-                    <li>The project is proposing a new way to solve well-established problems or solving relatively new problems.</li>
-                    <li>The project cites prior art and improves on the states-of-the-art proportionate to problem complexity.</li>
+                    <li>The project excels in fulfilment of specifications, quality of functionalities, and consideration of performance and scalability.</li>
+                    <li>The project includes strategies for stress testing and edge cases, including cybersecurity and security IRL.</li>
                 </ul>
                 <div class="bar-bg"><div class="bar-fill" style="width:10%"></div></div>
             </div>
@@ -357,12 +364,9 @@
 
     <div class="note-box reveal">KBI reserves the right to amend or disqualify a team or project if these parameters are not met or if amendments are not accepted.</div>
 
-    <div class="final-cta reveal">
-        <h2>Ready to compete?</h2>
-        <div class="cta-btn-group">
-            <a href="accolades.html" class="btn btn-outline">See Awards &amp; Prizes</a>
-            <a href="registration.html" class="btn btn-primary">Register NOW!</a>
-        </div>
+    <div class="cta-section reveal">
+        <h2 class="cta-title">Ready to compete?</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 
 </div>

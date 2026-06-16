@@ -57,24 +57,18 @@
 
         /* Stream arena */
         .stream-arena { display: flex; flex-direction: column; gap: 20px; }
-        .arena-card { display: grid; grid-template-columns: 140px 1fr 200px; background: var(--glass-deep); border: 1px solid var(--border-bright); border-radius: 4px; overflow: hidden; align-items: stretch; min-height: 150px; backdrop-filter: blur(10px); transition: border-color 0.3s ease; }
+        .arena-card { display: grid; grid-template-columns: 140px 1fr; background: var(--glass-deep); border: 1px solid var(--border-bright); border-radius: 4px; overflow: hidden; align-items: stretch; min-height: 150px; backdrop-filter: blur(10px); transition: border-color 0.3s ease; }
         .arena-card:hover { border-color: var(--node-bright); }
         .arena-label { display:flex; align-items:center; justify-content:center; background:rgba(74,125,255,0.1); font-size:1.4rem; font-weight:900; color:var(--node-bright); letter-spacing:3px; border-right:1px solid var(--border-muted); }
         .arena-info { padding: 25px; display: flex; flex-direction: column; justify-content: center; }
         .arena-info h3 { margin: 0 0 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--node-bright); font-size: 1.1rem; }
         .arena-info p { margin: 0; font-size: 0.95rem; color: #bbb; line-height: 1.5; }
-        .stream-visual { background-size: cover; background-position: center; opacity: 0.3; filter: grayscale(100%) brightness(1.2); transition: all 0.3s ease; }
-        .arena-card:hover .stream-visual { opacity: 0.6; filter: grayscale(0%) brightness(1); }
-        .infra-bg { background-image: url('https://cdn.kb.institute/eto-2026/IDSOL/Photograph/2024_ETO_Venue_2.JPG'); }
-        .prod-bg { background-image: url('https://cdn.kb.institute/eto-2026/IDSOL/Photograph/2024_ETO_Venue_3.JPG'); }
 
         /* CTA */
-        .cta-section { text-align:center; padding:60px 10px 100px; background:radial-gradient(circle at center,rgba(74,125,255,0.1) 0%,transparent 70%); }
-        .cta-section h2 { font-size:clamp(1.6rem,7vw,2.2rem); margin-bottom:15px; letter-spacing:3px; text-transform:uppercase; color:var(--node-bright); }
-        .btn-group { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-top:30px; }
-        .signup-btn { display:inline-block; background:var(--node-bright); color:var(--bg-darker); padding:16px 35px; border-radius:50px; text-decoration:none; text-transform:uppercase; letter-spacing:2px; font-weight:800; font-size:0.85rem; box-shadow:0 10px 30px rgba(156,233,255,0.2); transition:all 0.3s ease; border:1px solid var(--node-bright); width:100%; max-width:280px; text-align:center; }
+        .cta-section { text-align:center; padding:80px 20px 100px; }
+        .cta-title { font-size:clamp(1.8rem,7vw,2.4rem); letter-spacing:clamp(4px,1.8vw,8px); text-transform:uppercase; margin-bottom:40px; color:var(--node-bright); font-weight:900; }
+        .signup-btn { display:inline-block; background:var(--node-bright); color:var(--bg-darker); padding:clamp(14px,4vw,18px) clamp(32px,8vw,50px); border-radius:50px; text-decoration:none; text-transform:uppercase; letter-spacing:4px; font-weight:800; font-size:clamp(0.85rem,4vw,0.95rem); box-shadow:0 10px 30px rgba(156,233,255,0.2); transition:all 0.3s ease; border:1px solid var(--node-bright); }
         .signup-btn:hover { transform:translateY(-3px); box-shadow:0 15px 40px rgba(156,233,255,0.4); background:#fff; }
-        .secondary-btn { background:transparent; color:var(--node-bright); border:1px solid var(--node-bright); box-shadow:none; }
 
         @media (max-width:850px) {
             .hero-split, .arena-card { grid-template-columns: 1fr; }
@@ -129,30 +123,24 @@
 
     <div class="stream-arena">
         <div class="arena-card reveal stagger-1">
-            <div class="arena-label">INFRA</div>
+            <div class="arena-label">ARC</div>
             <div class="arena-info">
-                <h3>Enterprise-Oriented Infrastructure</h3>
-                <p>Designed for large-scale integration within for-profit and non-profit companies. Focuses on systemic resilience and scalability.</p>
+                <h3>Solution Architecture</h3>
+                <p>A design-centric category focusing on the first principles of DSAI to architect resilient, large-scale data frameworks and infrastructures for enterprise and social impact.</p>
             </div>
-            <div class="stream-visual infra-bg"></div>
         </div>
         <div class="arena-card reveal stagger-2">
-            <div class="arena-label">PROD</div>
+            <div class="arena-label">DEV</div>
             <div class="arena-info">
-                <h3>Consumer-Oriented Products</h3>
-                <p>Designed for individual utility, focusing on leisure, hobbies, or semi-professional interests.</p>
+                <h3>Solution Development</h3>
+                <p>An execution-focused category prioritizing technical engineering and modularity to build robust data applications, models, and integrated intelligence frameworks.</p>
             </div>
-            <div class="stream-visual prod-bg"></div>
         </div>
     </div>
 
     <div class="cta-section reveal">
-        <h2>Design the Future</h2>
-        <p style="opacity:0.6;font-size:1rem;margin-bottom:30px;">Is your project elite enough to qualify for IDSOL 2026?</p>
-        <div class="btn-group">
-            <a href="eligibility.html" class="signup-btn secondary-btn">View Requirements</a>
-            <a href="registration.html" class="signup-btn">Register Now!</a>
-        </div>
+        <h2 class="cta-title">Design the Future</h2>
+        <a href="registration.html" class="signup-btn">Register NOW!</a>
     </div>
 
 </div>

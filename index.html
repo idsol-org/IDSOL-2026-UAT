@@ -381,7 +381,6 @@
         }
         .cta-btn-hero:hover { transform: translateY(-3px); background: white; box-shadow: 0 15px 40px rgba(156,233,255,0.4); }
         .hero-register-btn { margin-top: 20px; }
-        #hero-section .snap-panel-body { transform: translateY(-4rem); }
         
         /* Upscaled CTA Branding Zone */
         .brand-zone {
@@ -400,7 +399,7 @@
         .brand-zone.revealed-inner #logo-reveal-img { opacity: 1; transform: scale(1); }
         .brand-zone.revealed-inner #traceCanvas { opacity: 0; pointer-events: none; }
 
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
             html {
                 scroll-snap-type: y mandatory;
                 scroll-padding-top: var(--nav-height);
@@ -558,7 +557,55 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            #hero-section.snap-panel:has(> .scroll-hint) {
+                padding-top: calc(var(--nav-height) + 0.75rem) !important;
+            }
+            #hero-section .snap-panel-body {
+                transform: none;
+                justify-content: flex-start;
+                padding-top: 0.5rem;
+                padding-bottom: 3.25rem;
+            }
+            #hero-section .snap-panel-body .hero-register-btn {
+                flex-shrink: 0;
+                margin-bottom: 0.25rem;
+            }
+                width: min(320px, 42vw);
+                margin-top: 8px;
+                margin-bottom: -32px;
+            }
+            .brand-title { font-size: 20px; letter-spacing: 3px; margin-top: 0; margin-bottom: 10px; line-height: 1.25; }
+            .countdown-subheader { font-size: 14px; letter-spacing: 4px; margin-top: 12px; margin-bottom: 10px; padding-bottom: 8px; }
+            .countdown-container { gap: 12px; margin-bottom: 16px; margin-top: 0; }
+            .time-box { width: 88px; padding: 12px 0; border-radius: 16px; }
+            .time-value { font-size: 36px; }
+            .time-label { font-size: 9px; }
+            .typed-line { font-size: 0.88rem; margin-top: 6px; margin-bottom: 4px; }
+            .hero-register-btn { margin-top: 8px; }
+            .cta-btn-hero { padding: 14px 36px; font-size: 0.9rem; letter-spacing: 3px; }
+        }
+
+        @media (min-width: 1281px) {
+            #hero-section .snap-panel-body {
+                transform: translateY(-4rem);
+                justify-content: center;
+                padding-top: 0;
+                padding-bottom: 2.5rem;
+            }
+            #hero-section .main-logo {
+                width: min(420px, 70vw);
+                max-width: 88%;
+                margin-top: 28px;
+                margin-bottom: -50px;
+            }
+            #hero-section.snap-panel:has(> .scroll-hint) {
+                padding-top: var(--nav-height) !important;
+            }
+            .hero-register-btn { margin-top: 20px; }
+        }
+
+        @media (max-width: 1024px) {
             html {
                 scroll-snap-type: none !important;
                 scroll-padding-top: 0 !important;
@@ -579,11 +626,11 @@
             }
             
             .scroll-hint { display: none !important; }
-            #hero-section { padding: 0.5rem 15px 2.5rem; }
-            #hero-section.snap-panel { padding-top: 0.5rem; }
-            #hero-section .snap-panel-body { transform: translateY(-2rem); }
-            .main-logo { margin-bottom: -10px; }
-            .brand-title { font-size: 17px; letter-spacing: 3px; margin-bottom: 14px; }
+            #hero-section { padding: 1rem 15px 2.5rem; }
+            #hero-section.snap-panel { padding-top: 1rem; }
+            #hero-section .snap-panel-body { transform: none; }
+            .main-logo { margin-top: 12px; margin-bottom: -40px; }
+            .brand-title { font-size: 17px; letter-spacing: 3px; margin-top: 0; margin-bottom: 10px; line-height: 1.25; }
             .time-box { width: 80px; padding: 15px 0; }
             .time-value { font-size: 32px; }
             
@@ -604,7 +651,11 @@
             .roadmap-connector::before { content: '⌄'; }
             
             /* MOVE TESTIMONIAL ARROWS INSIDE CARD TOP CORNERS ON MOBILE */
-            .testimonial-slider { padding: 14px 10px 12px; position: relative; }
+            .testimonial-slider {
+                padding: 14px 10px 12px;
+                position: relative;
+                max-width: min(800px, calc(100% - 24px));
+            }
             .arrow { top: 22px; transform: none; width: 45px; height: 45px; }
             .arrow.prev { left: 20px; }
             .arrow.next { right: 20px; }
@@ -613,7 +664,14 @@
             .t-card { padding: 24px 16px; }
             .t-body { font-size: 0.95rem; }
             
-            .stat-card { min-width: 100%; max-width: 100%; min-height: auto; padding: 25px 20px; }
+            .stat-card {
+                flex: 0 1 auto;
+                min-width: 0;
+                width: min(320px, 100%);
+                max-width: 320px;
+                min-height: auto;
+                padding: 25px 20px;
+            }
             .stat-number { font-size: 2.4rem; }
             
             /* CTA Section Mobile Sizing Adaptations */
@@ -821,6 +879,7 @@
 </main>
 
 <!-- Scripts -->
+<script src="js/bg-canvas-home.js"></script>
 <script src="js/nav.js"></script>
 <script>
 /* Countdown */
@@ -851,8 +910,7 @@ setInterval(updateCountdown, 1000);
 const lines = [
     'Innovating with Data Science...',
     'Connecting Global Minds...',
-    'Building the Future of AI...',
-    'Applying Intelligence...'
+    'Building the Future of AI...'
 ];
 let li = 0, ci = 0, deleting = false;
 function typeWriter() {
@@ -942,25 +1000,18 @@ resetAuto();
 const LOGO_SOURCES = [
     "https://cdn.kb.institute/logo/ABN-AMRO.png","https://cdn.kb.institute/logo/Alchemy.png","https://cdn.kb.institute/logo/Alibaba.png",
     "https://cdn.kb.institute/logo/Amazon.png","https://cdn.kb.institute/logo/Apple.png","https://cdn.kb.institute/logo/ASML.png",
-    "https://cdn.kb.institute/logo/ASTRI.png","https://cdn.kb.institute/logo/Baidu.png","https://cdn.kb.institute/logo/Bain-&-Company.png",
-    "https://cdn.kb.institute/logo/Blackcart.png","https://cdn.kb.institute/logo/Bloomberg.png","https://cdn.kb.institute/logo/BNP-Paribas.png",
+    "https://cdn.kb.institute/logo/ASTRI.png","https://cdn.kb.institute/logo/Bloomberg.png","https://cdn.kb.institute/logo/BNP-Paribas.png",
     "https://cdn.kb.institute/logo/ByteDance.png","https://cdn.kb.institute/logo/Coinbase.png","https://cdn.kb.institute/logo/Deloitte.png",
-    "https://cdn.kb.institute/logo/Deutsche-Bank.png","https://cdn.kb.institute/logo/Duolingo.png","https://cdn.kb.institute/logo/EY-Parthenon.png",
-    "https://cdn.kb.institute/logo/GitHub.png","https://cdn.kb.institute/logo/Google.png","https://cdn.kb.institute/logo/HSBC.png",
-    "https://cdn.kb.institute/logo/Indeed.png","https://cdn.kb.institute/logo/JP-Morgan-Chase.png","https://cdn.kb.institute/logo/Kaplan.png",
-    "https://cdn.kb.institute/logo/LinkedIn.png","https://cdn.kb.institute/logo/MasterCard.png","https://cdn.kb.institute/logo/McKinsey-&-Company.png",
-    "https://cdn.kb.institute/logo/Microsoft.png","https://cdn.kb.institute/logo/Morgan-Stanley.png","https://cdn.kb.institute/logo/NEOM.png",
-    "https://cdn.kb.institute/logo/Netflix.png","https://cdn.kb.institute/logo/NVIDIA-AI-Technology-Centre.png","https://cdn.kb.institute/logo/Open-AI.png",
-    "https://cdn.kb.institute/logo/Palantir.png","https://cdn.kb.institute/logo/PwC.png","https://cdn.kb.institute/logo/Reddit.png",
-    "https://cdn.kb.institute/logo/S&P-Global.png","https://cdn.kb.institute/logo/Shopify.png","https://cdn.kb.institute/logo/TikTok.png",
-    "https://cdn.kb.institute/logo/Udacity.png","https://cdn.kb.institute/logo/Union-Bank-of-Switzerland-(UBS).png","https://cdn.kb.institute/logo/Waymo.png",
-    "https://cdn.kb.institute/logo/Zoox.png","https://cdn.kb.institute/logo/University-of-Waterloo-(UW).png","https://cdn.kb.institute/logo/University-of-Michigan-(UMich).png",
-    "https://cdn.kb.institute/logo/University-of-California,-Los-Angeles-(UCLA).png","https://cdn.kb.institute/logo/University-of-Amsterdam-(UvA).png",
-    "https://cdn.kb.institute/logo/University-of-Alberta-(U-of-A).png","https://cdn.kb.institute/logo/University-College-London-(UCL).png",
-    "https://cdn.kb.institute/logo/The-University-of-Hong-Kong-(HKU).png","https://cdn.kb.institute/logo/The-Hong-Kong-University-of-Science-and-Technology-(HKUST).png",
-    "https://cdn.kb.institute/logo/The-Hong-Kong-Polytechnic-University-(PolyU).png","https://cdn.kb.institute/logo/The-Education-University-of-Hong-Kong-(EdUHK).png",
-    "https://cdn.kb.institute/logo/The-Chinese-University-of-Hong-Kong-(CUHK).png","https://cdn.kb.institute/logo/National-University-of-Singapore-(NUS).png",
-    "https://cdn.kb.institute/logo/Massachusetts-Institute-of-Technology-(MIT).png","https://cdn.kb.institute/logo/City-University-of-Hong-Kong-(CityU).png"
+    "https://cdn.kb.institute/logo/Deutsche-Bank.png","https://cdn.kb.institute/logo/Duolingo.png","https://cdn.kb.institute/logo/GitHub.png",
+    "https://cdn.kb.institute/logo/Google.png","https://cdn.kb.institute/logo/HSBC.png","https://cdn.kb.institute/logo/Indeed.png",
+    "https://cdn.kb.institute/logo/JP-Morgan-Chase.png","https://cdn.kb.institute/logo/LinkedIn.png","https://cdn.kb.institute/logo/Lyft.png",
+    "https://cdn.kb.institute/logo/MasterCard.png","https://cdn.kb.institute/logo/McKinsey-&-Company.png","https://cdn.kb.institute/logo/Microsoft.png",
+    "https://cdn.kb.institute/logo/Morgan-Stanley.png","https://cdn.kb.institute/logo/Netflix.png","https://cdn.kb.institute/logo/NVIDIA-AI-Technology-Centre.png",
+    "https://cdn.kb.institute/logo/Open-AI.png","https://cdn.kb.institute/logo/Palantir.png","https://cdn.kb.institute/logo/PwC.png",
+    "https://cdn.kb.institute/logo/Reddit.png","https://cdn.kb.institute/logo/Shopify.png","https://cdn.kb.institute/logo/TikTok.png",
+    "https://cdn.kb.institute/logo/Massachusetts-Institute-of-Technology-(MIT).png","https://cdn.kb.institute/logo/National-University-of-Singapore-(NUS).png",
+    "https://cdn.kb.institute/logo/S&P-Global.png", "https://cdn.kb.institute/logo/The-University-of-Hong-Kong-(HKU).png","https://cdn.kb.institute/logo/University-of-Waterloo-(UW).png",
+    "https://cdn.kb.institute/logo/Waymo.png","https://cdn.kb.institute/logo/Zoox.png"
 ];
 
 const logoWallContainer = document.getElementById('logo-wall-container');
@@ -973,7 +1024,7 @@ if (logoWallContainer) {
 
     function getItemsPerPage() {
         const width = window.innerWidth;
-        if (width < 600) return 8;
+        if (width < 1025) return 8;
         if (width < 1200) return 12;
         return 21;
     }
@@ -1089,105 +1140,5 @@ if (triggerFinal && brandBox && traceCanvas) {
 }
 </script>
 <script src="js/shared.js"></script>
-<script>if (window.lucide) lucide.createIcons();</script>
-<script>
-(function () {
-    'use strict';
-    const canvas = document.getElementById('bg-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let nodes = [];
-    let pulseWave = -200;
-
-    class Node {
-        constructor() { this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * (canvas.height * 2);
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = Math.random() * 3 + 2;
-            this.z = Math.random() * 0.8 + 0.2;
-            this.baseAlpha = 0.3 + Math.random() * 0.4;
-        }
-        update() {
-            this.x += this.vx * this.z;
-            this.y += this.vy * this.z;
-            if (this.x < 0) this.x += canvas.width;
-            if (this.x > canvas.width) this.x -= canvas.width;
-            const limit = canvas.height * 3;
-            if (this.y < 0) this.y += limit;
-            if (this.y > limit) this.y -= limit;
-        }
-        draw(scrollY) {
-            const drawY = (this.y - scrollY * this.z) % (canvas.height * 2);
-            if (drawY < -50 || drawY > canvas.height + 50) return;
-            let alpha = this.baseAlpha;
-            const dx = this.x - (canvas.width >> 1);
-            const dy = drawY - (canvas.height >> 1);
-            const dist = Math.hypot(dx, dy);
-            if (Math.abs(dist - pulseWave) < 50) {
-                alpha = 1; ctx.shadowBlur = 15; ctx.shadowColor = '#A5D7E8';
-            } else { ctx.shadowBlur = 0; }
-            ctx.beginPath();
-            ctx.arc(this.x, drawY, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(165,215,232,${alpha})`;
-            ctx.fill();
-        }
-    }
-
-    function initCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        nodes = [];
-        const nodeCount = Math.min(160, Math.floor((canvas.width * canvas.height) / 11000));
-        for (let i = 0; i < nodeCount; i++) nodes.push(new Node());
-    }
-
-    function drawBackground() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        pulseWave += 4;
-        if (pulseWave > canvas.width + 500) pulseWave = -200;
-        const scrollY = window.scrollY;
-        const hw = canvas.width >> 1;
-        const hh = canvas.height >> 1;
-        for (let i = 0; i < nodes.length; i++) {
-            const n = nodes[i];
-            n.update();
-            const py = (n.y - scrollY * n.z) % (canvas.height * 2);
-            if (py < -50 || py > canvas.height + 50) continue;
-            n.draw(scrollY);
-            for (let j = i + 1; j < nodes.length; j++) {
-                const nj = nodes[j];
-                const pnj = (nj.y - scrollY * nj.z) % (canvas.height * 2);
-                if (pnj < -50 || pnj > canvas.height + 50) continue;
-                const dist = Math.hypot(n.x - nj.x, py - pnj);
-                if (dist >= 220) continue;
-                const opacity = (1 - dist / 220) * 0.4;
-                ctx.beginPath();
-                ctx.moveTo(n.x, py);
-                ctx.lineTo(nj.x, pnj);
-                const midX = (n.x + nj.x) * 0.5;
-                const midY = (py + pnj) * 0.5;
-                const cDist = Math.hypot(midX - hw, midY - hh);
-                if (Math.abs(cDist - pulseWave) < 100) {
-                    ctx.strokeStyle = `rgba(165,215,232,${opacity * 2.5})`;
-                    ctx.lineWidth = 2;
-                } else {
-                    ctx.strokeStyle = `rgba(165,215,232,${opacity})`;
-                    ctx.lineWidth = 1;
-                }
-                ctx.stroke();
-            }
-        }
-        requestAnimationFrame(drawBackground);
-    }
-
-    initCanvas();
-    drawBackground();
-    window.addEventListener('resize', initCanvas, { passive: true });
-    setTimeout(() => canvas.classList.add('active'), 300);
-})();
-</script>
 </body>
 </html>
